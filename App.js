@@ -1,23 +1,60 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { Router, Scene } from 'react-native-router-flux';
+
+import MapScreen from './components/MapScreen';
+import ListScreen from './components/ListScreen';
+import HikeDetailsScreen from './components/HikeDetailsScreen';
+import SowSeedsScreen from './components/SowSeedsScreen';
+import AnalyticsScreen from './components/AnalyticsScreen';
+
+const TabIcon = ({ selected, title }) => {
+  return (
+    <Text style={{color: selected ? 'red' : 'black'}}>{title}</Text>
+  );
+}
 
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
+      <Router>
+        <Scene key="root">
+          <Scene
+            key="tabbar"
+            tabs={true}
+            tabBarStyle={{
+              backgroundColor: '#000000',
+            }}
+          >
+            <Scene
+              key="map"
+              component={MapScreen}
+              title="Map"
+              initial
+              />
+            <Scene
+              key="list"
+              component={ListScreen}
+              title="List"
+              />
+            <Scene
+              key="sowSeeds"
+              component={SowSeedsScreen}
+              title="Sow Seeds"
+              />
+            <Scene
+              key="analytics"
+              component={AnalyticsScreen}
+              title="Analytics"
+              />
+          </Scene>
+          <Scene
+            key="hikeDetails"
+            component={HikeDetailsScreen}
+            title="Hike Details"
+            />
+        </Scene>
+      </Router>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
