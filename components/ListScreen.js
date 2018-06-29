@@ -4,34 +4,53 @@ import {
   Text,
   View
 } from 'react-native';
-import { Actions } from 'react-native-router-flux';
+import axios from 'axios';
 
-const List = () => {
-  return (
-    <View style={styles.container}>
-      <Text
-        style={styles.welcome}
-        onPress={() => Actions.hikeDetails()}
-        >
-        Go To Hike Details
-      </Text>
-    </View>
-  );
+import Hike from './Hike';
+
+export default class List extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      hikes: [],
+    }
+  }
+
+  componentDidMount = () => {
+    axios.get('http://localhost:3000/hikes')
+    .then((response) => {
+      this.setState({
+        hikes: response.data
+      });
+    })
+    .catch((error) => {
+      this.setState({
+        message: error.message
+      });
+    });
+  }
+
+  renderHikeList = () => {
+    const hikeList = this.state.hikes.map((hike, index) => {
+      return (
+        <Hike
+          key={index}
+          name={hike.name}
+          distance={hike.distance}
+          created_at={hike.created_at}
+        />
+      );
+    });
+    return hikeList;
+  }
+
+  render() {
+    return (
+      <View>
+        {this.renderHikeList()}
+      </View>
+    );
+  }
+
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#bb0000',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-    color: '#ffffff',
-  },
-});
-
-export default List;
