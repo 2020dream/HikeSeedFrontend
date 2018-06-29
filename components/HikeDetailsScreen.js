@@ -4,34 +4,25 @@ import {
   Text,
   View
 } from 'react-native';
-import { Actions } from 'react-native-router-flux';
+import PropTypes from 'prop-types';
+import Moment from 'moment';
 
-const HikeDetails = () => {
-  return (
-    <View style={styles.container}>
-      <Text
-        style={styles.welcome}
-        onPress={() => Actions.map()}
-        >
-        Go Home
-      </Text>
-    </View>
-  );
+export default class HikeDetails extends Component {
+
+  static propTypes = {
+    hike: PropTypes.object.isRequired,
+  }
+
+  render() {
+    return (
+      <View>
+        <Text>Location: {this.props.hike.name}</Text>
+        <Text>Latitude: {this.props.hike.lat}</Text>
+        <Text>Longitude: {this.props.hike.lon}</Text>
+        <Text>Distance: {this.props.hike.distance}</Text>
+        <Text>Date: {Moment(this.props.hike.created_at).format('MM-DD-YYYY')}</Text>
+      </View>
+    );
+  }
+
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#bb0000',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-    color: '#ffffff',
-  },
-});
-
-export default HikeDetails;

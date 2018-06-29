@@ -9,6 +9,7 @@ import axios from 'axios';
 import Hike from './Hike';
 
 export default class List extends Component {
+  
   constructor(props) {
     super(props);
 
@@ -37,6 +38,8 @@ export default class List extends Component {
         <Hike
           key={index}
           name={hike.name}
+          lat={hike.lat}
+          lon={hike.lon}
           distance={hike.distance}
           created_at={hike.created_at}
         />

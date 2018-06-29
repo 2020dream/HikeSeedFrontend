@@ -6,6 +6,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import Moment from 'moment';
+import { Actions } from 'react-native-router-flux';
 
 export default class Hike extends Component {
 
@@ -18,10 +19,11 @@ export default class Hike extends Component {
   render() {
     return (
       <View>
-        <Text>Location: {this.props.name}</Text>
+        <Text onPress={() => Actions.hikeDetails({hike: this.props})}>Location: {this.props.name}</Text>
         <Text>Distance: {this.props.distance} mile(s)</Text>
         <Text>Date: {Moment(this.props.created_at).format('MM-DD-YYYY')}</Text>
       </View>
     );
   }
+  
 }
