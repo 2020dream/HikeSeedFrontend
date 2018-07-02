@@ -8,7 +8,7 @@ import { MapView } from 'expo';
 import axios from 'axios';
 import { Actions } from 'react-native-router-flux';
 import { Location, Permissions } from 'expo';
-
+import Moment from 'moment';
 
 export default class MapScreen extends Component {
 
@@ -53,7 +53,7 @@ export default class MapScreen extends Component {
     }
 
     let currentLocation = await Location.getCurrentPositionAsync({});
-    // Current Location is Ada
+    // Current Location is Ada in iOS simulator
     this.setState({
       location: {
         latitude: currentLocation.coords.latitude,
@@ -69,7 +69,8 @@ export default class MapScreen extends Component {
           key={index}
           coordinate={{latitude: parseFloat(hike.lat), longitude: parseFloat(hike.lon)}}
           title={hike.name}
-          onPress={() => Actions.hikeDetails({hike: hike})}
+          description={`Distance: ${hike.distance} miles, Date: ${Moment(this.props.created_at).format('MM-DD-YYYY')}`}
+          onCalloutPress={() => Actions.hikeDetails({hike: hike})}
         />
       );
     });
@@ -82,8 +83,8 @@ export default class MapScreen extends Component {
         <MapView
           style={styles.map}
           region={{...this.state.location, ...this.state.delta}}
-          showsUserLocation
-          showsMyLocationButton
+          showsUserLocation={true}
+          showsMyLocationButton={true}
         >
           {this.renderHikeMarkers()}
         </MapView>
