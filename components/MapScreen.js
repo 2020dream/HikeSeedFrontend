@@ -6,6 +6,7 @@ import {
 } from 'react-native';
 import { MapView } from 'expo';
 import axios from 'axios';
+import { Actions } from 'react-native-router-flux';
 
 export default class MapScreen extends Component {
 
@@ -44,7 +45,7 @@ export default class MapScreen extends Component {
           key={index}
           coordinate={{latitude: parseFloat(hike.lat), longitude: parseFloat(hike.lon)}}
           title={hike.name}
-          description={`Distance: ${hike.distance}`}
+          onPress={() => Actions.hikeDetails({hike: hike})}
         />
       );
     });

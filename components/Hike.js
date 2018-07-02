@@ -25,5 +25,5 @@ export default class Hike extends Component {
       </View>
     );
   }
-  
+
 }
