@@ -7,6 +7,8 @@ import {
 import { MapView } from 'expo';
 import axios from 'axios';
 import { Actions } from 'react-native-router-flux';
+import { Location, Permissions } from 'expo';
+
 
 export default class MapScreen extends Component {
 
@@ -14,9 +16,12 @@ export default class MapScreen extends Component {
     super(props);
 
     this.state = {
-      region: {
-        latitude: 47.799699,
-        longitude: -122.1775054,
+      // Default location is Bothell
+      location: {
+        latitude: 47.759953,
+        longitude: -122.204483,
+      },
+      delta: {
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421,
       },
@@ -25,6 +30,7 @@ export default class MapScreen extends Component {
   }
 
   componentDidMount = () => {
+    this.getLocationAsync();
     axios.get('http://localhost:3000/hikes')
     .then((response) => {
       this.setState({
@@ -35,6 +41,24 @@ export default class MapScreen extends Component {
       this.setState({
         message: error.message
       });
+    });
+  }
+
+  getLocationAsync = async () => {
+    let { status } = await Permissions.askAsync(Permissions.LOCATION);
+    if (status !== 'granted') {
+      this.setState({
+        errorMessage: 'Permission to access location was denied',
+      });
+    }
+
+    let currentLocation = await Location.getCurrentPositionAsync({});
+    // Current Location is Ada
+    this.setState({
+      location: {
+        latitude: currentLocation.coords.latitude,
+        longitude: currentLocation.coords.longitude,
+      }
     });
   }
 
@@ -57,7 +81,7 @@ export default class MapScreen extends Component {
       <View style={styles.container}>
         <MapView
           style={styles.map}
-          region={this.state.region}
+          region={{...this.state.location, ...this.state.delta}}
           showsUserLocation
           showsMyLocationButton
         >
