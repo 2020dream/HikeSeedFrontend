@@ -5,6 +5,7 @@ import {
   View
 } from 'react-native';
 import { MapView } from 'expo';
+import axios from 'axios';
 
 export default class MapScreen extends Component {
 
@@ -18,8 +19,36 @@ export default class MapScreen extends Component {
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421,
       },
-      markers: [],
+      hikes: [],
     }
+  }
+
+  componentDidMount = () => {
+    axios.get('http://localhost:3000/hikes')
+    .then((response) => {
+      this.setState({
+        hikes: response.data
+      });
+    })
+    .catch((error) => {
+      this.setState({
+        message: error.message
+      });
+    });
+  }
+
+  renderHikeMarkers = () => {
+    const hikeMarkers = this.state.hikes.map((hike, index) => {
+      return (
+        <MapView.Marker
+          key={index}
+          coordinate={{latitude: parseFloat(hike.lat), longitude: parseFloat(hike.lon)}}
+          title={hike.name}
+          description={`Distance: ${hike.distance}`}
+        />
+      );
+    });
+    return hikeMarkers;
   }
 
   render() {
@@ -31,12 +60,7 @@ export default class MapScreen extends Component {
           showsUserLocation
           showsMyLocationButton
         >
-          <MapView.Marker
-            key={1}
-            coordinate={{latitude: 47.799699, longitude: -122.1775054}}
-            title={"Start Here!"}
-            description={"Hello world!"}
-          />;
+          {this.renderHikeMarkers()}
         </MapView>
       </View>
     );
