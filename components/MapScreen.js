@@ -4,34 +4,54 @@ import {
   Text,
   View
 } from 'react-native';
-import { Actions } from 'react-native-router-flux';
+import { MapView } from 'expo';
 
-const MapScreen = () => {
-  return (
-    <View style={styles.container}>
-      <Text
-        style={styles.welcome}
-        onPress={() => Actions.hikeDetails()}
+export default class MapScreen extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      region: {
+        latitude: 47.799699,
+        longitude: -122.1775054,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+      },
+      markers: [],
+    }
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <MapView
+          style={styles.map}
+          region={this.state.region}
+          showsUserLocation
+          showsMyLocationButton
         >
-        Go To Hike Details
-      </Text>
-    </View>
-  );
+          <MapView.Marker
+            key={1}
+            coordinate={{latitude: 47.799699, longitude: -122.1775054}}
+            title={"Start Here!"}
+            description={"Hello world!"}
+          />;
+        </MapView>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    backgroundColor: '#fff',
     alignItems: 'center',
-    backgroundColor: '#bb0000',
+    justifyContent: 'center',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-    color: '#ffffff',
-  },
+  map: {
+    width: '100%',
+		height: '100%',
+  }
 });
-
-export default MapScreen;
