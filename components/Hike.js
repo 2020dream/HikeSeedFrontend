@@ -11,17 +11,15 @@ import { Actions } from 'react-native-router-flux';
 export default class Hike extends Component {
 
   static propTypes = {
-    name: PropTypes.string.isRequired,
-    distance: PropTypes.number.isRequired,
-    created_at: PropTypes.string.isRequired,
+    hike: PropTypes.object.isRequired,
   }
 
   render() {
     return (
       <View>
-        <Text onPress={() => Actions.hikeDetails({hike: this.props})}>Location: {this.props.name}</Text>
-        <Text>Distance: {this.props.distance} mile(s)</Text>
-        <Text>Date: {Moment(this.props.created_at).format('MM-DD-YYYY')}</Text>
+        <Text onPress={() => Actions.hikeDetails({hike: this.props.hike})}>Location: {this.props.hike.name}</Text>
+        <Text>Distance: {this.props.hike.distance} mile(s)</Text>
+        <Text>Date: {Moment(this.props.hike.created_at).format('MM-DD-YYYY')}</Text>
       </View>
     );
   }
