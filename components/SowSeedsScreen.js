@@ -7,6 +7,7 @@ import {
 import { Actions } from 'react-native-router-flux';
 import { FormLabel, FormInput, Button } from 'react-native-elements';
 import { Location, Permissions } from 'expo';
+import axios from 'axios';
 
 export default class Hike extends Component {
 
@@ -51,6 +52,17 @@ export default class Hike extends Component {
     });
   }
 
+  addHikeData = () => {
+    const newHike = this.state;
+    axios.post('http://localhost:3000/hikes', newHike)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   render() {
     return (
       <View>
@@ -70,7 +82,7 @@ export default class Hike extends Component {
           />
         <Button
           title='SOW SEEDS'
-          onPress={() => Actions.hikeDetails({hike: this.state})}
+          onPress={this.addHikeData}
           />
       </View>
     );
