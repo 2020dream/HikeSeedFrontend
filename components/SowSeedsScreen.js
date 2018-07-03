@@ -5,33 +5,51 @@ import {
   View
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import { FormLabel, FormInput, Button } from 'react-native-elements'
 
-const SowSeeds = () => {
-  return (
-    <View style={styles.container}>
-      <Text
-        style={styles.welcome}
-        onPress={() => Actions.hikeDetails()}
-        >
-        Go To Hike Details
-      </Text>
-    </View>
-  );
+export default class Hike extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      location: '',
+      distance: '',
+      nicknames: [],
+    };
+  }
+
+  parseNicknames = (nicknames) => {
+    let nicknameArray = [];
+    nicknameArray = nicknames.split(' ');
+    this.setState({
+      nicknames: nicknameArray,
+    })
+    console.log(this.state);
+  }
+
+  render() {
+    return (
+      <View>
+        <FormLabel>Location</FormLabel>
+        <FormInput
+          onChangeText={(location) => this.setState({location})}
+          value={this.state.location}
+          />
+        <FormLabel>Distance (miles)</FormLabel>
+        <FormInput
+          onChangeText={(distance) => this.setState({distance})}
+          value={this.state.distance}
+          />
+        <FormLabel>Nicknames (use ONLY one space as seperators)</FormLabel>
+        <FormInput
+          onChangeText={(nicknames) => this.parseNicknames(nicknames)}
+          />
+        <Button
+          title='SOW SEEDS'
+          />
+      </View>
+    );
+  }
+
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#bb0000',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-    color: '#ffffff',
-  },
-});
-
-export default SowSeeds;
