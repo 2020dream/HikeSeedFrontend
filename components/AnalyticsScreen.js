@@ -5,7 +5,7 @@ import {
   View
 } from 'react-native';
 import axios from 'axios';
-import { ContributionGraph } from 'react-native-chart-kit'
+import { LineChart, ContributionGraph } from 'react-native-chart-kit'
 import { Dimensions } from 'react-native'
 
 const screenWidth = Dimensions.get('window').width;
@@ -59,20 +59,31 @@ export default class Analytics extends Component {
     return totalDistance;
   }
 
-
-
   render() {
-    const commitsData = [
+    const hikingData = [
       { date: '2018-06-26', count: 12.3 },
       { date: '2018-07-05', count: 4.9 }
     ]
 
+    const plantData = {
+      labels: ['Sprout', 'Leaf', 'Flowerbud', 'Flower', 'Seeding'],
+      datasets: [{
+        data: [ 10, 0, 4, 0, 0 ]
+      }]
+    }
+
     return (
       <View>
         <ContributionGraph
-          values={commitsData}
+          values={hikingData}
           endDate={new Date('2018-08-01')}
           numDays={100}
+          width={screenWidth}
+          height={220}
+          chartConfig={chartConfig}
+        />
+      <LineChart
+          data={plantData}
           width={screenWidth}
           height={220}
           chartConfig={chartConfig}
