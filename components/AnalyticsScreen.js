@@ -5,6 +5,19 @@ import {
   View
 } from 'react-native';
 import axios from 'axios';
+import { ContributionGraph } from 'react-native-chart-kit'
+import { Dimensions } from 'react-native'
+
+const screenWidth = Dimensions.get('window').width;
+const chartConfig = {
+  backgroundColor: '#e26a00',
+  backgroundGradientFrom: '#fb8c00',
+  backgroundGradientTo: '#ffa726',
+  color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+  style: {
+    borderRadius: 16
+  }
+};
 
 export default class Analytics extends Component {
 
@@ -22,7 +35,6 @@ export default class Analytics extends Component {
       this.setState({
         hikes: response.data
       });
-      console.log(this.state.hikes.length);
     })
     .catch((error) => {
       this.setState({
@@ -47,9 +59,24 @@ export default class Analytics extends Component {
     return totalDistance;
   }
 
+
+
   render() {
+    const commitsData = [
+      { date: '2018-06-26', count: 12.3 },
+      { date: '2018-07-05', count: 4.9 }
+    ]
+
     return (
       <View>
+        <ContributionGraph
+          values={commitsData}
+          endDate={new Date('2018-08-01')}
+          numDays={100}
+          width={screenWidth}
+          height={220}
+          chartConfig={chartConfig}
+        />
         <Text>Total number of hikes: {this.state.hikes.length}</Text>
         <Text>Total number of seeds: {this.calculateSeedCount()}</Text>
         <Text>Total hiking distance: {this.calculateHikingDistance()} miles</Text>
