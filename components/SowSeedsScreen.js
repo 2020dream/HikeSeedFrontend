@@ -56,7 +56,7 @@ export default class Hike extends Component {
     const newHike = this.state;
     axios.post('http://localhost:3000/hikes', newHike)
       .then((response) => {
-        console.log(response);
+        Actions.hikeDetails({hike: newHike});
       })
       .catch((error) => {
         console.log(error);
