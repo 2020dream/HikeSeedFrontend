@@ -59,11 +59,19 @@ export default class Analytics extends Component {
     return totalDistance;
   }
 
+  parseHikingData = () => {
+    const hikingData = [];
+    this.state.hikes.forEach ((hike) => {
+      hikingData.push({ date: hike.created_at, count: hike.distance});
+    })
+    return hikingData;
+  }
+
   render() {
-    const hikingData = [
-      { date: '2018-06-26', count: 12.3 },
-      { date: '2018-07-05', count: 4.9 }
-    ]
+    // const hikingData = [
+    //   { date: '2018-06-26', count: 12.3 },
+    //   { date: '2018-07-05', count: 4.9 },
+    // ]
 
     const plantData = {
       labels: ['Sprout', 'Leaf', 'Flowerbud', 'Flower', 'Seeding'],
@@ -78,7 +86,7 @@ export default class Analytics extends Component {
         <Text>Total Hiking Distance: {this.calculateHikingDistance()} miles</Text>
         <Text>Hiking Heatmap</Text>
         <ContributionGraph
-          values={hikingData}
+          values={this.parseHikingData()}
           endDate={new Date('2018-08-01')}
           numDays={100}
           width={screenWidth}
