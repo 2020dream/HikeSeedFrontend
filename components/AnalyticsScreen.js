@@ -67,19 +67,52 @@ export default class Analytics extends Component {
     return hikingData;
   }
 
-  render() {
-    // const hikingData = [
-    //   { date: '2018-06-26', count: 12.3 },
-    //   { date: '2018-07-05', count: 4.9 },
-    // ]
-
-    const plantData = {
-      labels: ['Sprout', 'Leaf', 'Flowerbud', 'Flower', 'Seeding'],
-      datasets: [{
-        data: [ 10, 0, 4, 0, 0 ]
-      }]
+  parsePlantData = () => {
+    const plantDataHash = {
+      'Sprout': 0,
+      'Leaf': 0,
+      'Flowerbud': 0,
+      'Flower': 0,
+      'Seeding': 0,
     }
 
+    const today = new Date();
+
+    this.state.hikes.forEach ((hike) => {
+      const plantDate = new Date(hike.created_at);
+      const age = Math.abs(today - plantDate) / 86400000;
+
+      if (age <= 2) {
+        plantDataHash['Sprout'] += hike.seeds.length;
+      } else if (age <= 7) {
+        plantDataHash['Leaf'] += hike.seeds.length;
+      } else if (age <= 13) {
+        plantDataHash['Flowerbud'] += hike.seeds.length;
+      } else if (age <= 16) {
+        plantDataHash['Flower'] += hike.seeds.length;
+      } else {
+        plantDataHash['Seeding'] += hike.seeds.length;
+      }
+    })
+
+    const hash_keys = [];
+    const hash_values = [];
+
+    for (let key in plantDataHash) {
+      hash_keys.push(key);
+      hash_values.push(plantDataHash[key]);
+    }
+
+    const plantData = {
+      labels: hash_keys,
+      datasets: [{
+        data: hash_values
+      }]
+    }
+    return plantData;
+  }
+
+  render() {
     return (
       <View>
         <Text>Total Number of Hikes: {this.state.hikes.length}</Text>
@@ -96,7 +129,7 @@ export default class Analytics extends Component {
         <Text>Total Number of Plants: {this.calculateSeedCount()}</Text>
         <Text>Plant Distribution</Text>
         <BarChart
-            data={plantData}
+            data={this.parsePlantData()}
             width={screenWidth}
             height={220}
             chartConfig={chartConfig}

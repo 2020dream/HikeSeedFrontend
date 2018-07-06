@@ -31,7 +31,6 @@ export default class HikeDetails extends Component {
     const today = new Date();
     const plantDate = new Date(this.props.hike.created_at);
     const age = Math.abs(today - plantDate) / 86400000;
-    console.log(age);
 
     if (age <= 2) {
       this.setState({
