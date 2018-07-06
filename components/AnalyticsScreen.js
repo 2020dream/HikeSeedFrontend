@@ -5,7 +5,7 @@ import {
   View
 } from 'react-native';
 import axios from 'axios';
-import { LineChart, ContributionGraph } from 'react-native-chart-kit'
+import { BarChart, ContributionGraph } from 'react-native-chart-kit'
 import { Dimensions } from 'react-native'
 
 const screenWidth = Dimensions.get('window').width;
@@ -74,6 +74,9 @@ export default class Analytics extends Component {
 
     return (
       <View>
+        <Text>Total Number of Hikes: {this.state.hikes.length}</Text>
+        <Text>Total Hiking Distance: {this.calculateHikingDistance()} miles</Text>
+        <Text>Hiking Heatmap</Text>
         <ContributionGraph
           values={hikingData}
           endDate={new Date('2018-08-01')}
@@ -82,15 +85,14 @@ export default class Analytics extends Component {
           height={220}
           chartConfig={chartConfig}
         />
-      <LineChart
-          data={plantData}
-          width={screenWidth}
-          height={220}
-          chartConfig={chartConfig}
-        />
-        <Text>Total number of hikes: {this.state.hikes.length}</Text>
-        <Text>Total number of seeds: {this.calculateSeedCount()}</Text>
-        <Text>Total hiking distance: {this.calculateHikingDistance()} miles</Text>
+        <Text>Total Number of Plants: {this.calculateSeedCount()}</Text>
+        <Text>Plant Distribution</Text>
+        <BarChart
+            data={plantData}
+            width={screenWidth}
+            height={220}
+            chartConfig={chartConfig}
+          />
       </View>
     );
   }
