@@ -19,7 +19,7 @@ export default class List extends Component {
   }
 
   componentDidMount = () => {
-    axios.get('http://localhost:3000/hikes')
+    axios.get('https://zc-hike-seed.herokuapp.com/hikes')
     .then((response) => {
       this.setState({
         hikes: response.data
