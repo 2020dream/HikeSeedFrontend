@@ -1,5 +1,15 @@
 {
   "expo": {
-    "sdkVersion": "27.0.0"
+  "name": "Hike Seed",
+  "icon": "./app-icon.png",
+  "version": "1.0.0",
+  "slug": "hike-seed",
+  "sdkVersion": "27.0.0",
+  "ios": {
+    "bundleIdentifier": "com.zhengcao18.hikeseed"
+  },
+  "android": {
+    "package": "com.zhengcao18.hikeseed"
+  }
   }
 }
