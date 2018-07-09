@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
-  View
+  View,
+  Platform,
+  TextInput
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { FormLabel, FormInput, Button } from 'react-native-elements';
@@ -74,27 +76,73 @@ export default class Hike extends Component {
 
   render() {
     return (
-      <View>
-        <FormLabel>Hike Name</FormLabel>
-        <FormInput
+      <View style={styles.container}>
+        <Text style={styles.title}>SOW SEEDS</Text>
+        <Text style={styles.text}>Hike Name</Text>
+        <TextInput
+          style={styles.input}
           onChangeText={(name) => this.setState({name})}
           value={this.state.name}
           />
-        <FormLabel>Distance (miles)</FormLabel>
-        <FormInput
+        <Text style={styles.text}>Distance (miles)</Text>
+        <TextInput
+          style={styles.input}
           onChangeText={(distance) => this.setState({distance})}
           value={this.state.distance}
           />
-        <FormLabel>Nicknames (use ONLY one space as seperators)</FormLabel>
-        <FormInput
+        <Text style={styles.text}>Nicknames</Text>
+        <Text style={styles.text}>(use ONLY ONE space as seperators)</Text>
+        <TextInput
+          style={styles.input}
           onChangeText={(nicknames) => this.parseNicknames(nicknames)}
           />
         <Button
+          style={styles.button}
+          backgroundColor='#9143b7'
           title='SOW SEEDS'
           onPress={this.addHikeData}
           />
       </View>
     );
   }
-
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#fff',
+    justifyContent: 'flex-start',
+    paddingTop: 50,
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+  },
+  title: {
+    ...Platform.select({
+         ios: { fontFamily: 'Optima-Bold', },
+         android: { fontFamily: 'sans-serif-medium' }
+    }),
+    fontSize: 25,
+    color: 'green',
+    paddingBottom: 15,
+    textAlign: 'center',
+    width: '100%',
+  },
+  text: {
+    fontSize: 20,
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+  input: {
+    borderColor: 'orange',
+    borderWidth: StyleSheet.hairlineWidth,
+    marginBottom: 10,
+    fontSize: 20,
+    width: '80%',
+    textAlign: 'center',
+    padding: 5,
+  },
+  button: {
+    width: 130,
+    marginTop: 10,
+  }
+});

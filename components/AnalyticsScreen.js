@@ -116,7 +116,7 @@ export default class Analytics extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>Analytics</Text>
+        <Text style={styles.title}>ANALYTICS</Text>
         <Text style={styles.text}>Total Number of Hikes: {this.state.hikes.length}</Text>
         <Text style={styles.text}>Total Hiking Distance: {this.calculateHikingDistance()} miles</Text>
         <Text style={styles.text}>Hiking Heatmap</Text>

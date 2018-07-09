@@ -34,6 +34,7 @@ export default class App extends React.Component {
             tabs={true}
             tabBarStyle={{
               backgroundColor: '#ffffff',
+              paddingTop: 30,
             }}
           >
             <Scene
