@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import PropTypes from 'prop-types';
 import { Router, Scene } from 'react-native-router-flux';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import MapScreen from './components/MapScreen';
 import ListScreen from './components/ListScreen';
@@ -8,10 +10,18 @@ import HikeDetailsScreen from './components/HikeDetailsScreen';
 import SowSeedsScreen from './components/SowSeedsScreen';
 import AnalyticsScreen from './components/AnalyticsScreen';
 
-const TabIcon = ({ selected, title }) => {
-  return (
-    <Text style={{color: selected ? 'red' : 'black'}}>{title}</Text>
-  );
+class TabIcon extends React.Component {
+  static propTypes = {
+    iconName: PropTypes.string.isRequired,
+  }
+
+  render() {
+    return (
+      <View style={{flex:1, flexDirection:'column', alignItems:'center', alignSelf:'center', justifyContent: 'center'}}>
+        <Icon style={{color: 'orange'}} name={this.props.iconName || "circle"} size={25}/>
+      </View>
+    );
+  }
 }
 
 export default class App extends React.Component {
@@ -23,29 +33,41 @@ export default class App extends React.Component {
             key="tabbar"
             tabs={true}
             tabBarStyle={{
-              backgroundColor: '#000000',
+              backgroundColor: '#ffffff',
             }}
           >
             <Scene
               key="map"
-              component={MapScreen}
               title="Map"
-              initial
+              iconName="map"
+              icon={TabIcon}
+              hideNavBar={true}
+              component={MapScreen}
+              initial={true}
               />
             <Scene
               key="list"
-              component={ListScreen}
               title="List"
+              iconName="list"
+              icon={TabIcon}
+              hideNavBar={true}
+              component={ListScreen}
               />
             <Scene
               key="sowSeeds"
-              component={SowSeedsScreen}
               title="Sow Seeds"
+              iconName="leaf"
+              icon={TabIcon}
+              hideNavBar={true}
+              component={SowSeedsScreen}
               />
             <Scene
               key="analytics"
-              component={AnalyticsScreen}
               title="Analytics"
+              iconName="bar-chart"
+              icon={TabIcon}
+              hideNavBar={true}
+              component={AnalyticsScreen}
               />
           </Scene>
           <Scene
