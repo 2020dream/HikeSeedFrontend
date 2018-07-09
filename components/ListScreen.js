@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'flex-start',
+    paddingTop: 40,
   },
   title: {
     ...Platform.select({

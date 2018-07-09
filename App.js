@@ -72,8 +72,8 @@ export default class App extends React.Component {
           </Scene>
           <Scene
             key="hikeDetails"
-            component={HikeDetailsScreen}
             title="Hike Details"
+            component={HikeDetailsScreen}
             />
         </Scene>
       </Router>
