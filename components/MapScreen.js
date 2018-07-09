@@ -69,7 +69,7 @@ export default class MapScreen extends Component {
           key={index}
           coordinate={{latitude: parseFloat(hike.lat), longitude: parseFloat(hike.lon)}}
           title={hike.name}
-          description={`Distance: ${hike.distance} miles, Date: ${Moment(this.props.created_at).format('MM-DD-YYYY')}`}
+          description={`Distance: ${hike.distance} miles, Date: ${Moment(hike.created_at).format('MM-DD-YYYY')}`}
           onCalloutPress={() => Actions.hikeDetails({hike: hike})}
         />
       );
