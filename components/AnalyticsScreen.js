@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
-  View
+  View,
+  Platform
 } from 'react-native';
 import axios from 'axios';
 import { BarChart, ContributionGraph } from 'react-native-chart-kit'
@@ -10,10 +11,10 @@ import { Dimensions } from 'react-native'
 
 const screenWidth = Dimensions.get('window').width;
 const chartConfig = {
-  backgroundColor: '#e26a00',
-  backgroundGradientFrom: '#fb8c00',
-  backgroundGradientTo: '#ffa726',
-  color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+  backgroundColor: '#ffffff',
+  backgroundGradientFrom: '#ffffff',
+  backgroundGradientTo: '#ffffff',
+  color: (opacity = 1) => `rgba(70, 135, 40, ${opacity})`,
   style: {
     borderRadius: 16
   }
@@ -114,28 +115,54 @@ export default class Analytics extends Component {
 
   render() {
     return (
-      <View>
-        <Text>Total Number of Hikes: {this.state.hikes.length}</Text>
-        <Text>Total Hiking Distance: {this.calculateHikingDistance()} miles</Text>
-        <Text>Hiking Heatmap</Text>
+      <View style={styles.container}>
+        <Text style={styles.title}>Analytics</Text>
+        <Text style={styles.text}>Total Number of Hikes: {this.state.hikes.length}</Text>
+        <Text style={styles.text}>Total Hiking Distance: {this.calculateHikingDistance()} miles</Text>
+        <Text style={styles.text}>Hiking Heatmap</Text>
         <ContributionGraph
           values={this.parseHikingData()}
-          endDate={new Date('2018-08-01')}
+          endDate={new Date('2018-09-01')}
           numDays={100}
           width={screenWidth}
           height={220}
           chartConfig={chartConfig}
         />
-        <Text>Total Number of Plants: {this.calculateSeedCount()}</Text>
-        <Text>Plant Distribution</Text>
+        <Text style={styles.text}>Total Number of Plants: {this.calculateSeedCount()}</Text>
+        <Text style={styles.text}>Plant Distribution</Text>
         <BarChart
             data={this.parsePlantData()}
             width={screenWidth}
             height={220}
             chartConfig={chartConfig}
+            style={styles.chart}
           />
       </View>
     );
   }
-
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#fff',
+    justifyContent: 'flex-start',
+    paddingTop: 50,
+    width: '100%',
+    height: '100%',
+  },
+  title: {
+    ...Platform.select({
+         ios: { fontFamily: 'Optima-Bold', },
+         android: { fontFamily: 'sans-serif-medium' }
+    }),
+    fontSize: 25,
+    color: 'green',
+    paddingBottom: 15,
+    textAlign: 'center',
+  },
+  text: {
+    fontSize: 18,
+    padding: 5,
+    textAlign: 'center',
+  }
+});
