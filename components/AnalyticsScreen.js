@@ -69,9 +69,9 @@ export default class Analytics extends Component {
 
   parsePlantData = () => {
     const plantDataHash = {
+      'Seed': 0,
       'Sprout': 0,
       'Leaf': 0,
-      'Flowerbud': 0,
       'Flower': 0,
       'Seeding': 0,
     }
@@ -82,12 +82,12 @@ export default class Analytics extends Component {
       const plantDate = new Date(hike.created_at);
       const age = Math.abs(today - plantDate) / 86400000;
 
-      if (age <= 2) {
+      if (age <= 1) {
+        plantDataHash['Seed'] += hike.seeds.length;
+      } else if (age <= 3) {
         plantDataHash['Sprout'] += hike.seeds.length;
-      } else if (age <= 7) {
-        plantDataHash['Leaf'] += hike.seeds.length;
       } else if (age <= 13) {
-        plantDataHash['Flowerbud'] += hike.seeds.length;
+        plantDataHash['Leaf'] += hike.seeds.length;
       } else if (age <= 16) {
         plantDataHash['Flower'] += hike.seeds.length;
       } else {
