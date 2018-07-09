@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import Moment from 'moment';
-import { Button, Icon } from "react-native-elements";
+import { Button } from "react-native-elements";
 
 const seedUri = 'https://storage.googleapis.com/capstone-images/seed.png';
 const sproutUri = 'https://storage.googleapis.com/capstone-images/sprout.png';
@@ -75,6 +75,45 @@ export default class HikeDetails extends Component {
     return nicknames;
   }
 
+  renderButtons = () => {
+    if (this.state.stage === 'seed') {
+      return (
+        <View>
+          <Button style={styles.button} backgroundColor='#9143b7' title='WATER' />
+        </View>
+      );
+    } else if (this.state.stage === 'sprout') {
+      return (
+        <View>
+          <Button style={styles.button} backgroundColor='#9143b7' title='WEED' />
+          <Button style={styles.button} backgroundColor='#9143b7' title='WATER' />
+          <Button style={styles.button} backgroundColor='#9143b7' title='FERTILIZE' />
+        </View>
+      );
+    } else if (this.state.stage === 'leaf') {
+      return (
+        <View>
+          <Button style={styles.button} backgroundColor='#9143b7' title='WEED' />
+          <Button style={styles.button} backgroundColor='#9143b7' title='WATER' />
+          <Button style={styles.button} backgroundColor='#9143b7' title='FERTILIZE' />
+        </View>
+      );
+    } else if (this.state.stage === 'flower') {
+      return (
+        <View>
+          <Button style={styles.button} backgroundColor='#9143b7' title='WATER' />
+          <Button style={styles.button} backgroundColor='#9143b7' title='FERTILIZE' />
+        </View>
+      );
+    } else if (this.state.stage === 'seeding') {
+      return (
+        <View>
+          <Button style={styles.button} backgroundColor='#9143b7' title='HARVEST' />
+        </View>
+      );
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -89,10 +128,7 @@ export default class HikeDetails extends Component {
         />
         <Text style={styles.text}>Nicknames:</Text>
         {this.renderSeedNicknames()}
-        <Button style={styles.button} backgroundColor='#9143b7' title='WEED' />
-        <Button style={styles.button} backgroundColor='#9143b7' title='WATER' />
-        <Button style={styles.button} backgroundColor='#9143b7' title='FERTILIZE' />
-        <Button style={styles.button} backgroundColor='#9143b7' title='HARVEST' />
+        {this.renderButtons()}
       </View>
     );
   }
