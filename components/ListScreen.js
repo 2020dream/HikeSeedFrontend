@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
-  View
+  View,
+  Platform
 } from 'react-native';
 import axios from 'axios';
 
@@ -46,10 +47,28 @@ export default class List extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
+        <Text style={styles.title}>HIKE LIST</Text>
         {this.renderHikeList()}
       </View>
     );
   }
-
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
+  title: {
+    ...Platform.select({
+         ios: { fontFamily: 'Optima-Bold', },
+         android: { fontFamily: 'sans-serif-medium' }
+    }),
+    fontSize: 25,
+    color: 'green',
+    padding: 10,
+  },
+});
