@@ -1,3 +1,8 @@
+Author of app-icon & images:
+Uses different to web: If possible, the text "designed by Freepik from Flaticon" must be
+written next to Flaticon Contents, if it's not possible, the attribution must be placed in the credits or
+acknowledgements section.
+
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
