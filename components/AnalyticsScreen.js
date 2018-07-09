@@ -3,11 +3,12 @@ import {
   StyleSheet,
   Text,
   View,
+  ScrollView,
   Platform
 } from 'react-native';
 import axios from 'axios';
 import { BarChart, ContributionGraph } from 'react-native-chart-kit'
-import { Dimensions } from 'react-native'
+import { Dimensions } from 'react-native';
 
 const screenWidth = Dimensions.get('window').width;
 const chartConfig = {
@@ -115,29 +116,35 @@ export default class Analytics extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.title}>ANALYTICS</Text>
-        <Text style={styles.text}>Total Number of Hikes: {this.state.hikes.length}</Text>
-        <Text style={styles.text}>Total Hiking Distance: {this.calculateHikingDistance()} miles</Text>
-        <Text style={styles.text}>Hiking Heatmap</Text>
-        <ContributionGraph
-          values={this.parseHikingData()}
-          endDate={new Date('2018-09-01')}
-          numDays={100}
-          width={screenWidth}
-          height={220}
-          chartConfig={chartConfig}
-        />
-        <Text style={styles.text}>Total Number of Plants: {this.calculateSeedCount()}</Text>
-        <Text style={styles.text}>Plant Distribution</Text>
-        <BarChart
-            data={this.parsePlantData()}
-            width={screenWidth}
-            height={220}
-            chartConfig={chartConfig}
-            style={styles.chart}
-          />
-      </View>
+      <ScrollView contentContainerStyle={{flex:1}}>
+        <View style={styles.container}>
+          <Text style={styles.title}>ANALYTICS</Text>
+          <View>
+            <Text style={styles.subtitle}>Hiking Heatmap</Text>
+            <Text style={styles.text}>Total Number of Hikes: {this.state.hikes.length}</Text>
+            <Text style={styles.text}>Total Hiking Distance: {this.calculateHikingDistance()} miles</Text>
+            <ContributionGraph
+              values={this.parseHikingData()}
+              endDate={new Date('2018-09-01')}
+              numDays={100}
+              width={screenWidth}
+              height={220}
+              chartConfig={chartConfig}
+              />
+          </View>
+          <View>
+            <Text style={styles.subtitle}>Plant Distribution</Text>
+            <Text style={styles.text}>Total Number of Plants: {this.calculateSeedCount()}</Text>
+            <BarChart
+              data={this.parsePlantData()}
+              width={screenWidth}
+              height={220}
+              chartConfig={chartConfig}
+              style={styles.chart}
+              />
+          </View>
+        </View>
+      </ScrollView>
     );
   }
 }
@@ -146,22 +153,42 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
     justifyContent: 'flex-start',
-    paddingTop: 50,
     width: '100%',
     height: '100%',
   },
   title: {
+    backgroundColor: '#fff',
     ...Platform.select({
-         ios: { fontFamily: 'Optima-Bold', },
-         android: { fontFamily: 'sans-serif-medium' }
+        ios: {
+          fontFamily: 'Optima-Bold',
+          paddingTop: '15%',
+        },
+        android: {
+          fontFamily: 'sans-serif-medium',
+          paddingTop: '10%',
+        }
     }),
-    fontSize: 25,
-    color: 'green',
-    paddingBottom: 15,
+    fontSize: 30,
+    color: '#468728',
+    paddingBottom: 10,
     textAlign: 'center',
   },
+  subtitle: {
+    ...Platform.select({
+         ios: { fontFamily: 'Optima', },
+         android: { fontFamily: 'sans-serif' }
+    }),
+    fontSize: 20,
+    padding: 5,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
   text: {
-    fontSize: 18,
+    ...Platform.select({
+         ios: { fontFamily: 'Optima', },
+         android: { fontFamily: 'sans-serif' }
+    }),
+    fontSize: 15,
     padding: 5,
     textAlign: 'center',
   }
