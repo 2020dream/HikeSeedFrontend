@@ -7,7 +7,7 @@ import {
   TextInput
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { FormLabel, FormInput, Button } from 'react-native-elements';
+import { Button } from 'react-native-elements';
 import { Location, Permissions } from 'expo';
 import axios from 'axios';
 
@@ -77,20 +77,21 @@ export default class Hike extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>SOW SEEDS</Text>
-        <Text style={styles.text}>Hike Name</Text>
+        <Text style={styles.header}>HIKE & SEED</Text>
+        <Text style={styles.title}>Sow Seeds</Text>
+        <Text style={styles.subtitle}>Hike Name</Text>
         <TextInput
           style={styles.input}
           onChangeText={(name) => this.setState({name})}
           value={this.state.name}
           />
-        <Text style={styles.text}>Distance (miles)</Text>
+        <Text style={styles.subtitle}>Distance (miles)</Text>
         <TextInput
           style={styles.input}
           onChangeText={(distance) => this.setState({distance})}
           value={this.state.distance}
           />
-        <Text style={styles.text}>Nicknames</Text>
+        <Text style={styles.subtitle}>Nicknames</Text>
         <Text style={styles.text}>(use ONLY ONE space as seperators)</Text>
         <TextInput
           style={styles.input}
@@ -98,7 +99,7 @@ export default class Hike extends Component {
           />
         <Button
           style={styles.button}
-          backgroundColor='#9143b7'
+          backgroundColor='#683b23'
           title='SOW SEEDS'
           onPress={this.addHikeData}
           />
@@ -111,30 +112,69 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
     justifyContent: 'flex-start',
-    paddingTop: 50,
     width: '100%',
     height: '100%',
     alignItems: 'center',
   },
+  header: {
+    ...Platform.select({
+        ios: {
+          fontFamily: 'Optima-Bold',
+          paddingTop: '15%',
+        },
+        android: {
+          fontFamily: 'sans-serif-medium',
+          paddingTop: '10%',
+        }
+    }),
+    fontSize: 30,
+    color: 'orange',
+    paddingBottom: 5,
+    textAlign: 'center',
+    backgroundColor: '#f0f2ef',
+    width: '100%',
+    borderColor: 'grey',
+    borderWidth: StyleSheet.hairlineWidth,
+  },
   title: {
+    ...Platform.select({
+        ios: {
+          fontFamily: 'Optima-Bold',
+        },
+        android: {
+          fontFamily: 'sans-serif-medium',
+        }
+    }),
+    fontSize: 25,
+    color: '#468728',
+    padding: 10,
+    textAlign: 'center',
+  },
+  subtitle: {
     ...Platform.select({
          ios: { fontFamily: 'Optima-Bold', },
          android: { fontFamily: 'sans-serif-medium' }
     }),
-    fontSize: 25,
-    color: 'green',
-    paddingBottom: 15,
+    fontSize: 20,
+    padding: 5,
     textAlign: 'center',
-    width: '100%',
   },
   text: {
-    fontSize: 20,
-    marginBottom: 10,
+    ...Platform.select({
+         ios: { fontFamily: 'Optima', },
+         android: { fontFamily: 'sans-serif' }
+    }),
+    fontSize: 15,
+    padding: 5,
     textAlign: 'center',
   },
   input: {
-    borderColor: 'orange',
+    borderColor: '#468728',
     borderWidth: StyleSheet.hairlineWidth,
+    ...Platform.select({
+         ios: { fontFamily: 'Optima', },
+         android: { fontFamily: 'sans-serif' }
+    }),
     marginBottom: 10,
     fontSize: 20,
     width: '80%',

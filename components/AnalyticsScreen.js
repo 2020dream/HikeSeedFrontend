@@ -118,7 +118,8 @@ export default class Analytics extends Component {
     return (
       <ScrollView contentContainerStyle={{flex:1}}>
         <View style={styles.container}>
-          <Text style={styles.title}>ANALYTICS</Text>
+          <Text style={styles.header}>HIKE & SEED</Text>
+          <Text style={styles.title}>Analytics</Text>
           <View>
             <Text style={styles.subtitle}>Hiking Heatmap</Text>
             <Text style={styles.text}>Total Number of Hikes: {this.state.hikes.length}</Text>
@@ -156,8 +157,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-  title: {
-    backgroundColor: '#fff',
+  header: {
     ...Platform.select({
         ios: {
           fontFamily: 'Optima-Bold',
@@ -169,19 +169,36 @@ const styles = StyleSheet.create({
         }
     }),
     fontSize: 30,
+    color: 'orange',
+    paddingBottom: 5,
+    textAlign: 'center',
+    backgroundColor: '#f0f2ef',
+    width: '100%',
+    borderColor: 'grey',
+    borderWidth: StyleSheet.hairlineWidth,
+  },
+  title: {
+    ...Platform.select({
+        ios: {
+          fontFamily: 'Optima-Bold',
+        },
+        android: {
+          fontFamily: 'sans-serif-medium',
+        }
+    }),
+    fontSize: 25,
     color: '#468728',
-    paddingBottom: 10,
+    padding: 10,
     textAlign: 'center',
   },
   subtitle: {
     ...Platform.select({
-         ios: { fontFamily: 'Optima', },
-         android: { fontFamily: 'sans-serif' }
+         ios: { fontFamily: 'Optima-Bold', },
+         android: { fontFamily: 'sans-serif-medium' }
     }),
     fontSize: 20,
     padding: 5,
     textAlign: 'center',
-    fontWeight: 'bold',
   },
   text: {
     ...Platform.select({

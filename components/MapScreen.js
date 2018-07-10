@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
-  View
+  View,
+  Platform
 } from 'react-native';
 import { MapView } from 'expo';
 import axios from 'axios';
@@ -80,6 +81,7 @@ export default class MapScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Text style={styles.header}>HIKE & SEED</Text>
         <MapView
           style={styles.map}
           region={{...this.state.location, ...this.state.delta}}
@@ -95,10 +97,31 @@ export default class MapScreen extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#fff',
+    justifyContent: 'flex-start',
+    width: '100%',
+    height: '100%',
     alignItems: 'center',
-    justifyContent: 'center',
+  },
+  header: {
+    ...Platform.select({
+        ios: {
+          fontFamily: 'Optima-Bold',
+          paddingTop: '15%',
+        },
+        android: {
+          fontFamily: 'sans-serif-medium',
+          paddingTop: '10%',
+        }
+    }),
+    fontSize: 30,
+    color: 'orange',
+    paddingBottom: 5,
+    textAlign: 'center',
+    backgroundColor: '#f0f2ef',
+    width: '100%',
+    borderColor: 'grey',
+    borderWidth: StyleSheet.hairlineWidth,
   },
   map: {
     width: '100%',

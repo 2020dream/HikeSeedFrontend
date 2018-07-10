@@ -17,9 +17,9 @@ export default class Hike extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View>
         <Text
-          style={styles.title}
+          style={styles.subtitle}
           onPress={() => Actions.hikeDetails({hike: this.props.hike})}
           >
           {this.props.hike.name}
@@ -32,23 +32,22 @@ export default class Hike extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    padding: 10,
-    borderTopColor: 'green',
-    borderTopWidth: StyleSheet.hairlineWidth,
-  },
-  title: {
+  subtitle: {
     ...Platform.select({
-         ios: { fontFamily: 'Optima', },
+         ios: { fontFamily: 'Optima-Bold', },
          android: { fontFamily: 'sans-serif-medium' }
     }),
     fontSize: 20,
-    color: 'green',
+    padding: 5,
+    textAlign: 'center',
   },
   text: {
+    ...Platform.select({
+         ios: { fontFamily: 'Optima', },
+         android: { fontFamily: 'sans-serif' }
+    }),
     fontSize: 15,
-  }
+    padding: 5,
+    textAlign: 'center',
+  },
 });

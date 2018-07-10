@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Platform } from 'react-native';
 import PropTypes from 'prop-types';
 import { Router, Scene } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -34,8 +34,8 @@ export default class App extends React.Component {
             tabs={true}
             tabBarPosition={'bottom'}
             tabBarStyle={{
-              backgroundColor: '#ffffff',
-              paddingTop: 30,
+              backgroundColor: '#f0f2ef',
+              paddingTop: 35,
             }}
           >
             <Scene

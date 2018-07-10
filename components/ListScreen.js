@@ -48,7 +48,8 @@ export default class List extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>HIKE LIST</Text>
+        <Text style={styles.header}>HIKE & SEED</Text>
+        <Text style={styles.title}>Hike List</Text>
         {this.renderHikeList()}
       </View>
     );
@@ -57,19 +58,44 @@ export default class List extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'flex-start',
-    paddingTop: 40,
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+  },
+  header: {
+    ...Platform.select({
+        ios: {
+          fontFamily: 'Optima-Bold',
+          paddingTop: '15%',
+        },
+        android: {
+          fontFamily: 'sans-serif-medium',
+          paddingTop: '10%',
+        }
+    }),
+    fontSize: 30,
+    color: 'orange',
+    paddingBottom: 5,
+    textAlign: 'center',
+    backgroundColor: '#f0f2ef',
+    width: '100%',
+    borderColor: 'grey',
+    borderWidth: StyleSheet.hairlineWidth,
   },
   title: {
     ...Platform.select({
-         ios: { fontFamily: 'Optima-Bold', },
-         android: { fontFamily: 'sans-serif-medium' }
+        ios: {
+          fontFamily: 'Optima-Bold',
+        },
+        android: {
+          fontFamily: 'sans-serif-medium',
+        }
     }),
     fontSize: 25,
-    color: 'green',
+    color: '#468728',
     padding: 10,
+    textAlign: 'center',
   },
 });

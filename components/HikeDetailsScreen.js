@@ -67,8 +67,8 @@ export default class HikeDetails extends Component {
   renderSeedNicknames = () => {
     const nicknames = this.props.hike.seeds.map((seed, index) => {
       return (
-        <View key={index}>
-          <Text style={styles.text}>  - {seed.nickname}</Text>
+        <View style={styles.nicknames} key={index}>
+          <Text style={styles.text}> 🌻 {seed.nickname}</Text>
         </View>
       );
     })
@@ -79,36 +79,36 @@ export default class HikeDetails extends Component {
     if (this.state.stage === 'seed') {
       return (
         <View>
-          <Button style={styles.button} backgroundColor='#9143b7' title='WATER' />
+          <Button style={styles.button} backgroundColor='#0478f4' title='WATER' />
         </View>
       );
     } else if (this.state.stage === 'sprout') {
       return (
         <View>
-          <Button style={styles.button} backgroundColor='#9143b7' title='WEED' />
-          <Button style={styles.button} backgroundColor='#9143b7' title='WATER' />
-          <Button style={styles.button} backgroundColor='#9143b7' title='FERTILIZE' />
+          <Button style={styles.button} backgroundColor='#468728' title='WEED' />
+          <Button style={styles.button} backgroundColor='#0478f4' title='WATER' />
+          <Button style={styles.button} backgroundColor='#49280f' title='FERTILIZE' />
         </View>
       );
     } else if (this.state.stage === 'leaf') {
       return (
         <View>
-          <Button style={styles.button} backgroundColor='#9143b7' title='WEED' />
-          <Button style={styles.button} backgroundColor='#9143b7' title='WATER' />
-          <Button style={styles.button} backgroundColor='#9143b7' title='FERTILIZE' />
+          <Button style={styles.button} backgroundColor='#468728' title='WEED' />
+          <Button style={styles.button} backgroundColor='#0478f4' title='WATER' />
+          <Button style={styles.button} backgroundColor='#49280f' title='FERTILIZE' />
         </View>
       );
     } else if (this.state.stage === 'flower') {
       return (
         <View>
-          <Button style={styles.button} backgroundColor='#9143b7' title='WATER' />
-          <Button style={styles.button} backgroundColor='#9143b7' title='FERTILIZE' />
+          <Button style={styles.button} backgroundColor='#0478f4' title='WATER' />
+          <Button style={styles.button} backgroundColor='#49280f' title='FERTILIZE' />
         </View>
       );
     } else if (this.state.stage === 'seeding') {
       return (
         <View>
-          <Button style={styles.button} backgroundColor='#9143b7' title='HARVEST' />
+          <Button style={styles.button} backgroundColor='#e5853b' title='HARVEST' />
         </View>
       );
     }
@@ -122,12 +122,16 @@ export default class HikeDetails extends Component {
         <Text style={styles.text}>Date: {Moment(this.props.hike.created_at).format('MM-DD-YYYY')}</Text>
         <Text style={styles.text}>Number of Plants: {this.props.hike.seeds.length}</Text>
         <Text style={styles.text}>Plant Growth Stage: {this.state.stage}</Text>
-        <Image
-          style={styles.image}
-          source={{uri: this.state.uri}}
-        />
-        <Text style={styles.text}>Nicknames:</Text>
-        {this.renderSeedNicknames()}
+        <View style={styles.subcontainer}>
+          <Image
+            style={styles.image}
+            source={{uri: this.state.uri}}
+            />
+          <View>
+            <Text style={styles.subtitle}>Nicknames:</Text>
+            {this.renderSeedNicknames()}
+          </View>
+        </View>
         {this.renderButtons()}
       </View>
     );
@@ -138,31 +142,61 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
     justifyContent: 'flex-start',
-    paddingTop: 10,
-    paddingLeft: 100,
     width: '100%',
     height: '100%',
+    alignItems: 'center',
+  },
+  subcontainer: {
+    flex: 0.5,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    paddingBottom: 10,
   },
   title: {
+    ...Platform.select({
+        ios: {
+          fontFamily: 'Optima-Bold',
+          paddingTop: 10,
+        },
+        android: {
+          fontFamily: 'sans-serif-medium',
+          paddingTop: 10,
+        }
+    }),
+    fontSize: 25,
+    color: '#468728',
+    paddingBottom: 10,
+    textAlign: 'center',
+  },
+  subtitle: {
     ...Platform.select({
          ios: { fontFamily: 'Optima-Bold', },
          android: { fontFamily: 'sans-serif-medium' }
     }),
-    fontSize: 25,
-    color: 'green',
-    paddingBottom: 15,
+    fontSize: 20,
+    padding: 5,
+    textAlign: 'center',
   },
   text: {
+    ...Platform.select({
+         ios: { fontFamily: 'Optima', },
+         android: { fontFamily: 'sans-serif' }
+    }),
     fontSize: 18,
-    paddingBottom: 5,
+    padding: 5,
+    textAlign: 'center',
   },
   image: {
     width: 130,
     height: 130,
     margin: 10,
   },
+  nicknames: {
+    alignItems: 'flex-start',
+  },
   button: {
-    width: 130,
-    marginBottom: 10,
+    width: 120,
+    marginTop: 10,
   }
 });
