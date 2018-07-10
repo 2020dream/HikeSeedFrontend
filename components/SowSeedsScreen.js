@@ -59,7 +59,7 @@ export default class Hike extends Component {
     axios.post('https://zc-hike-seed.herokuapp.com/hikes', newHike)
       .then((response) => {
         this.clearForm();
-        Actions.hikeDetails({hike: newHike});
+        Actions.hikeDetails({hike: response.data});
       })
       .catch((error) => {
         console.log(error);
