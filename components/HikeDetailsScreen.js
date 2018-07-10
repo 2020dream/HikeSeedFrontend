@@ -150,8 +150,8 @@ const styles = StyleSheet.create({
     flex: 0.5,
     flexDirection: 'row',
     justifyContent: 'space-around',
-    alignItems: 'center',
-    paddingBottom: 10,
+    alignItems: 'flex-start',
+    padding: 10,
   },
   title: {
     ...Platform.select({
