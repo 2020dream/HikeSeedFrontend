@@ -27,13 +27,18 @@ export default class Hike extends Component {
   parseNicknames = (nicknames) => {
     let seeds = [];
     let nameArray = nicknames.split(' ');
-    nameArray.forEach((name) => {
-      seeds.push({nickname: name})
-    })
-    this.setState({
-      seeds,
-      seedString: nicknames,
-    })
+    let allowedNumber = parseInt(this.state.distance);
+
+    if (allowedNumber > 0) {
+      let allowedNameArray = nameArray.slice(0, allowedNumber);
+      allowedNameArray.forEach((name) => {
+        seeds.push({nickname: name})
+      })
+      this.setState({
+        seeds,
+        seedString: nicknames,
+      })
+    }
   }
 
   componentDidMount = () => {
