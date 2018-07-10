@@ -20,6 +20,7 @@ export default class Hike extends Component {
       name: '',
       distance: '',
       seeds: [],
+      seedString: '',
     };
   }
 
@@ -31,6 +32,7 @@ export default class Hike extends Component {
     })
     this.setState({
       seeds,
+      seedString: nicknames,
     })
   }
 
@@ -70,7 +72,7 @@ export default class Hike extends Component {
     this.setState({
       name: '',
       distance: '',
-      seeds: [],
+      seedString: '',
     });
   }
 
@@ -96,6 +98,7 @@ export default class Hike extends Component {
         <TextInput
           style={styles.input}
           onChangeText={(nicknames) => this.parseNicknames(nicknames)}
+          value={this.state.seedString}
           />
         <Button
           style={styles.button}
