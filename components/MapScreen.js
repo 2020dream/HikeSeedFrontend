@@ -10,6 +10,11 @@ import axios from 'axios';
 import { Actions } from 'react-native-router-flux';
 import { Location, Permissions } from 'expo';
 import Moment from 'moment';
+import MapViewDirections from 'react-native-maps-directions';
+
+const origin = {latitude: 47.794123, longitude: -122.201123};
+const destination = {latitude: 47.775635, longitude: -122.185626};
+const GOOGLE_MAPS_APIKEY = 'AIzaSyC_NNhhIaGqjr9Ca-08_m3hv21SsfRDQvg';
 
 export default class MapScreen extends Component {
 
@@ -89,6 +94,14 @@ export default class MapScreen extends Component {
           showsMyLocationButton={true}
         >
           {this.renderHikeMarkers()}
+          <MapViewDirections
+            origin={origin}
+            destination={destination}
+            apikey={GOOGLE_MAPS_APIKEY}
+            mode='walking'
+            strokeWidth={3}
+            strokeColor='purple'
+          />
         </MapView>
       </View>
     );
