@@ -64,7 +64,9 @@ export default class Analytics extends Component {
   parseHikingData = () => {
     const hikingData = [];
     this.state.hikes.forEach ((hike) => {
-      hikingData.push({ date: hike.created_at, count: hike.distance});
+      const date = hike.date.split("-");
+      const plantDate = new Date(date[2], date[0] - 1, date[1]);
+      hikingData.push({ date: plantDate, count: hike.distance});
     })
     return hikingData;
   }
@@ -81,7 +83,8 @@ export default class Analytics extends Component {
     const today = new Date();
 
     this.state.hikes.forEach ((hike) => {
-      const plantDate = new Date(hike.created_at);
+      const date = hike.date.split("-");
+      const plantDate = new Date(date[2], date[0] - 1, date[1]);
       const age = Math.abs(today - plantDate) / 86400000;
 
       if (age <= 1) {
