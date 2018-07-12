@@ -10,6 +10,7 @@ import { Actions } from 'react-native-router-flux';
 import { Button } from 'react-native-elements';
 import { Location, Permissions } from 'expo';
 import axios from 'axios';
+import Moment from 'moment';
 
 export default class Hike extends Component {
 
@@ -17,8 +18,13 @@ export default class Hike extends Component {
     super(props);
 
     this.state = {
-      name: '',
+      origin_lat: '',
+      origin_lon: '',
+      lat: '',
+      lon: '',
       distance: '',
+      name: '',
+      date: Moment(new Date()).format('MM-DD-YYYY'),
       seeds: [],
       seedString: '',
     };
@@ -54,10 +60,23 @@ export default class Hike extends Component {
     }
 
     let currentLocation = await Location.getCurrentPositionAsync({});
-    // Current Location is Ada in iOS simulator
     this.setState({
-      lat: currentLocation.coords.latitude,
-      lon: currentLocation.coords.longitude,
+      current_lat: currentLocation.coords.latitude,
+      current_lon: currentLocation.coords.longitude,
+    });
+  }
+
+  setOriginLocation = () => {
+    this.setState({
+      origin_lat: this.state.current_lat,
+      origin_lon: this.state.current_lon,
+    });
+  }
+
+  setDestinationLocation = () => {
+    this.setState({
+      lat: this.state.current_lat,
+      lon: this.state.current_lon,
     });
   }
 
@@ -91,11 +110,13 @@ export default class Hike extends Component {
             style={styles.button}
             backgroundColor='#47bc4d'
             title='START'
+            onPress={this.setOriginLocation}
             />
           <Button
             style={styles.button}
             backgroundColor='#f93e3e'
             title='END'
+            onPress={this.setDestinationLocation}
             />
         </View>
         <Text style={styles.subtitle}>Hike Name</Text>
