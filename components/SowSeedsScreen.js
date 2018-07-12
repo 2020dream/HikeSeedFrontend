@@ -85,7 +85,19 @@ export default class Hike extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.header}>HIKE & SEED</Text>
-        <Text style={styles.title}>Sow Seeds</Text>
+        <Text style={styles.title}>New Hike</Text>
+        <View style={styles.buttonContainer}>
+          <Button
+            style={styles.button}
+            backgroundColor='#47bc4d'
+            title='START'
+            />
+          <Button
+            style={styles.button}
+            backgroundColor='#f93e3e'
+            title='END'
+            />
+        </View>
         <Text style={styles.subtitle}>Hike Name</Text>
         <TextInput
           style={styles.input}
@@ -123,6 +135,13 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     alignItems: 'center',
+  },
+  buttonContainer: {
+    flex: 0.3,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'flex-start',
+    padding: 10,
   },
   header: {
     ...Platform.select({

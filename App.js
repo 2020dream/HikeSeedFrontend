@@ -56,8 +56,8 @@ export default class App extends React.Component {
               component={ListScreen}
               />
             <Scene
-              key="sowSeeds"
-              title="Sow Seeds"
+              key="newHike"
+              title="New Hike"
               iconName="leaf"
               icon={TabIcon}
               hideNavBar={true}
