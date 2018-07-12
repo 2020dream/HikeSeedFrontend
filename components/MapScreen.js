@@ -101,6 +101,9 @@ export default class MapScreen extends Component {
             mode='walking'
             strokeWidth={3}
             strokeColor='purple'
+            onReady={(result) => {
+              console.log(result);
+            }}
           />
         </MapView>
       </View>

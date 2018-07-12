@@ -3,6 +3,8 @@ Uses different to web: If possible, the text "designed by Freepik from Flaticon"
 written next to Flaticon Contents, if it's not possible, the attribution must be placed in the credits or
 acknowledgements section.
 
+You are required to display the message “Powered by Dark Sky” that links to https://darksky.net/poweredby/ somewhere prominent in your app or service. If attribution isn't for you, email sales@darksky.net for details about white labeling.
+
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
