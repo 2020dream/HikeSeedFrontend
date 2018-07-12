@@ -13,6 +13,8 @@ import axios from 'axios';
 import Moment from 'moment';
 
 const GOOGLE_MAPS_APIKEY = 'AIzaSyC_NNhhIaGqjr9Ca-08_m3hv21SsfRDQvg';
+const GEOLOCATION_OPTIONS = { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 };
+
 
 export default class Hike extends Component {
 
@@ -51,6 +53,7 @@ export default class Hike extends Component {
 
   componentDidMount = () => {
     this.getLocationAsync();
+    Location.watchPositionAsync(GEOLOCATION_OPTIONS, this.changeLocation);
   }
 
   getLocationAsync = async () => {
@@ -65,6 +68,13 @@ export default class Hike extends Component {
     this.setState({
       current_lat: currentLocation.coords.latitude,
       current_lon: currentLocation.coords.longitude,
+    });
+  }
+
+  changeLocation = (location) => {
+    this.setState({
+      current_lat: location.coords.latitude,
+      current_lon: location.coords.longitude,
     });
   }
 
@@ -178,7 +188,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonContainer: {
-    flex: 0.3,
+    flex: 0.2,
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'flex-start',
