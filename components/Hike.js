@@ -25,7 +25,7 @@ export default class Hike extends Component {
           {this.props.hike.name}
         </Text>
         <Text style={styles.text}>Distance: {this.props.hike.distance} miles</Text>
-        <Text style={styles.text}>Date: {Moment(this.props.hike.created_at).format('MM-DD-YYYY')}</Text>
+        <Text style={styles.text}>Date: {this.props.hike.date}</Text>
       </View>
     );
   }
