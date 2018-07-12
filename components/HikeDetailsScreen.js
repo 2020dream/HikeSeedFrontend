@@ -33,7 +33,8 @@ export default class HikeDetails extends Component {
 
   componentDidMount = () => {
     const today = new Date();
-    const plantDate = new Date(this.props.hike.created_at);
+    const date = this.props.hike.date.split("-");
+    const plantDate = new Date(date[2], date[0] - 1, date[1]);
     const age = Math.abs(today - plantDate) / 86400000;
 
     if (age <= 1) {
@@ -119,7 +120,7 @@ export default class HikeDetails extends Component {
       <View style={styles.container}>
         <Text style={styles.title}>{this.props.hike.name}</Text>
         <Text style={styles.text}>Distance: {this.props.hike.distance} miles</Text>
-        <Text style={styles.text}>Date: {Moment(this.props.hike.created_at).format('MM-DD-YYYY')}</Text>
+        <Text style={styles.text}>Date: {this.props.hike.date}</Text>
         <Text style={styles.text}>Number of Plants: {this.props.hike.seeds.length}</Text>
         <Text style={styles.text}>Plant Growth Stage: {this.state.stage}</Text>
         <View style={styles.subcontainer}>
