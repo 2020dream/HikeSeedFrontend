@@ -12,8 +12,6 @@ import { Location, Permissions } from 'expo';
 import Moment from 'moment';
 import MapViewDirections from 'react-native-maps-directions';
 
-const origin = {latitude: 47.794123, longitude: -122.201123};
-const destination = {latitude: 47.775635, longitude: -122.185626};
 const GOOGLE_MAPS_APIKEY = 'AIzaSyC_NNhhIaGqjr9Ca-08_m3hv21SsfRDQvg';
 
 export default class MapScreen extends Component {
@@ -83,6 +81,26 @@ export default class MapScreen extends Component {
     return hikeMarkers;
   }
 
+  renderHikeRoutes = () => {
+    const hikeRoutes = this.state.hikes.map((hike, index) => {
+      let origin = {latitude: parseFloat(hike.origin_lat), longitude: parseFloat(hike.origin_lon)};
+      let destination = {latitude: parseFloat(hike.lat), longitude: parseFloat(hike.lon)};
+
+      return(
+        <MapViewDirections
+          key={index}
+          origin={origin}
+          destination={destination}
+          apikey={GOOGLE_MAPS_APIKEY}
+          mode='walking'
+          strokeWidth={2}
+          strokeColor='purple'
+          />
+      );
+    });
+    return hikeRoutes;
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -94,17 +112,7 @@ export default class MapScreen extends Component {
           showsMyLocationButton={true}
         >
           {this.renderHikeMarkers()}
-          <MapViewDirections
-            origin={origin}
-            destination={destination}
-            apikey={GOOGLE_MAPS_APIKEY}
-            mode='walking'
-            strokeWidth={3}
-            strokeColor='purple'
-            onReady={(result) => {
-              console.log(result);
-            }}
-          />
+          {this.renderHikeRoutes()}
         </MapView>
       </View>
     );
