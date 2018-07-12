@@ -12,6 +12,8 @@ import { Location, Permissions } from 'expo';
 import axios from 'axios';
 import Moment from 'moment';
 
+const GOOGLE_MAPS_APIKEY = 'AIzaSyC_NNhhIaGqjr9Ca-08_m3hv21SsfRDQvg';
+
 export default class Hike extends Component {
 
   constructor(props) {
@@ -22,7 +24,7 @@ export default class Hike extends Component {
       origin_lon: '',
       lat: '',
       lon: '',
-      distance: '',
+      distance: '0',
       name: '',
       date: Moment(new Date()).format('MM-DD-YYYY'),
       seeds: [],
@@ -78,6 +80,19 @@ export default class Hike extends Component {
       lat: this.state.current_lat,
       lon: this.state.current_lon,
     });
+    this.getDistance();
+  }
+
+  getDistance = () => {
+    axios.get(`https://maps.googleapis.com/maps/api/directions/json?origin=${this.state.origin_lat},${this.state.origin_lon}&destination=${this.state.lat},${this.state.lon}&key=${GOOGLE_MAPS_APIKEY}&mode=walking`)
+      .then((response) => {
+        this.setState({
+          distance: response.data.routes[0].legs[0].distance.text,
+        })
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   addHikeData = () => {
@@ -95,12 +110,13 @@ export default class Hike extends Component {
   clearForm = () => {
     this.setState({
       name: '',
-      distance: '',
+      distance: '0',
       seedString: '',
     });
   }
 
   render() {
+    console.log(this.state);
     return (
       <View style={styles.container}>
         <Text style={styles.header}>HIKE & SEED</Text>
@@ -119,17 +135,12 @@ export default class Hike extends Component {
             onPress={this.setDestinationLocation}
             />
         </View>
+        <Text style={styles.subtitle}>Distance: {this.state.distance}</Text>
         <Text style={styles.subtitle}>Hike Name</Text>
         <TextInput
           style={styles.input}
           onChangeText={(name) => this.setState({name})}
           value={this.state.name}
-          />
-        <Text style={styles.subtitle}>Distance (miles)</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={(distance) => this.setState({distance})}
-          value={this.state.distance}
           />
         <Text style={styles.subtitle}>Nicknames</Text>
         <Text style={styles.text}>(use ONLY ONE space as seperators)</Text>
