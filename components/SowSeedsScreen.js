@@ -86,9 +86,18 @@ export default class Hike extends Component {
   getDistance = () => {
     axios.get(`https://maps.googleapis.com/maps/api/directions/json?origin=${this.state.origin_lat},${this.state.origin_lon}&destination=${this.state.lat},${this.state.lon}&key=${GOOGLE_MAPS_APIKEY}&mode=walking`)
       .then((response) => {
-        this.setState({
-          distance: response.data.routes[0].legs[0].distance.text,
-        })
+        const originDistance = response.data.routes[0].legs[0].distance.text.split(" ");
+        if (originDistance[1] === 'ft') {
+          const distance = Number((parseFloat(originDistance[0]) / 5280).toFixed(1));
+          this.setState({
+            distance,
+          })
+        } else {
+          const distance = Number((parseFloat(originDistance[0])).toFixed(1));
+          this.setState({
+            distance,
+          })
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -135,7 +144,7 @@ export default class Hike extends Component {
             onPress={this.setDestinationLocation}
             />
         </View>
-        <Text style={styles.subtitle}>Distance: {this.state.distance}</Text>
+        <Text style={styles.subtitle}>Distance: {this.state.distance} miles</Text>
         <Text style={styles.subtitle}>Hike Name</Text>
         <TextInput
           style={styles.input}
