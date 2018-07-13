@@ -10,6 +10,7 @@ import {
 import PropTypes from 'prop-types';
 import Moment from 'moment';
 import { Button } from "react-native-elements";
+import axios from 'axios';
 
 const seedUri = 'https://storage.googleapis.com/capstone-images/seed.png';
 const sproutUri = 'https://storage.googleapis.com/capstone-images/sprout.png';
@@ -25,6 +26,7 @@ export default class HikeDetails extends Component {
     this.state = {
       uri: seedUri,
       stage: 'seed',
+      weather: '',
     }
   }
 
@@ -64,6 +66,8 @@ export default class HikeDetails extends Component {
         stage: 'seeding'
       });
     }
+
+    this.getWeatherInfo();
   }
 
   renderSeedNicknames = () => {
@@ -117,7 +121,11 @@ export default class HikeDetails extends Component {
   }
 
   renderWaterButton = () => {
-    let disabled = true;
+    let disabled = false;
+    if (this.state.weather === "rain" || this.state.weather === "snow") {
+      disabled = true;
+      Alert.alert('It\'s raining/snowing today, so no watering is needed!')
+    }
     return(
       <Button style={styles.button} backgroundColor='#0478f4' title='WATER' disabled={disabled}
         onPress={() => { Alert.alert('Thanks for the drink!') }}
@@ -147,6 +155,18 @@ export default class HikeDetails extends Component {
         onPress={() => { Alert.alert('Enjoy your harvest! You deserve it!') }}
         />
     );
+  }
+
+  getWeatherInfo = () => {
+    axios.get(`https://api.darksky.net/forecast/036954698c0274b1db364efe54ff6234/${this.props.hike.lat},${this.props.hike.lon}?exclude=minutely,currently,hourly,flags`)
+      .then((response) => {
+        this.setState({
+          weather: response.data.daily.icon,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   render() {
