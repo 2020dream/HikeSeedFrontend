@@ -1,5 +1,5 @@
 Author of app-icon & images:
-Uses different to web: If possible, the text "designed by Freepik from Flaticon" must be
+Uses different to web: If possible, the text "designed by Freepik,  smalllikeart & mynamepong from Flaticon" must be
 written next to Flaticon Contents, if it's not possible, the attribution must be placed in the credits or
 acknowledgements section.
 

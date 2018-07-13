@@ -18,6 +18,15 @@ const leafUri = 'https://storage.googleapis.com/capstone-images/leaf.png';
 const flowerUri = 'https://storage.googleapis.com/capstone-images/flower.png';
 const seedingUri = 'https://storage.googleapis.com/capstone-images/seeding.png';
 
+// clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day, or partly-cloudy-night
+const sunnyUri = 'https://storage.googleapis.com/capstone-images/sunny.png';
+const rainUri = 'https://storage.googleapis.com/capstone-images/rain.png';
+const snowUri = 'https://storage.googleapis.com/capstone-images/snow.png';
+const sleetUri = 'https://storage.googleapis.com/capstone-images/sleet.png';
+const windUri = 'https://storage.googleapis.com/capstone-images/wind.png';
+const fogUri = 'https://storage.googleapis.com/capstone-images/fog.png';
+const cloudyUri = 'https://storage.googleapis.com/capstone-images/cloudy.png';
+
 export default class HikeDetails extends Component {
 
   constructor() {
@@ -79,6 +88,34 @@ export default class HikeDetails extends Component {
       );
     })
     return nicknames;
+  }
+
+  renderWeatherIcon = () => {
+    let icon = this.state.weather;
+    let iconUri = '';
+    if (icon === "clear-day" || icon === "clear-night") {
+      iconUri = sunnyUri;
+    } else if (icon === "rain") {
+      iconUri = rainUri;
+    } else if (icon === "snow") {
+      iconUri = snowUri;
+    } else if (icon === "sleet") {
+      iconUri = sleetUri;
+    } else if (icon === "wind") {
+      iconUri = windUri;
+    } else if (icon === "fog") {
+      iconUri = fogUri;
+    } else if (icon === "cloudy" || icon === "partly-cloudy-day" || icon === "partly-cloudy-night") {
+      iconUri = cloudyUri;
+    } else {
+      iconUri = sunnyUri;
+    }
+    return (
+      <Image
+        style={styles.smallImage}
+        source={{uri: iconUri}}
+        />
+    );
   }
 
   renderButtons = () => {
@@ -187,6 +224,7 @@ export default class HikeDetails extends Component {
             {this.renderSeedNicknames()}
           </View>
         </View>
+        {this.renderWeatherIcon()}
         {this.renderButtons()}
       </View>
     );
@@ -245,6 +283,11 @@ const styles = StyleSheet.create({
   image: {
     width: 130,
     height: 130,
+    margin: 10,
+  },
+  smallImage: {
+    width: 70,
+    height: 70,
     margin: 10,
   },
   nicknames: {
