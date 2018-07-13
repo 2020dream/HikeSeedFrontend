@@ -4,7 +4,8 @@ import {
   Text,
   View,
   Image,
-  Platform
+  Platform,
+  Alert
 } from 'react-native';
 import PropTypes from 'prop-types';
 import Moment from 'moment';
@@ -80,36 +81,56 @@ export default class HikeDetails extends Component {
     if (this.state.stage === 'seed') {
       return (
         <View>
-          <Button style={styles.button} backgroundColor='#0478f4' title='WATER' />
+          <Button style={styles.button} backgroundColor='#0478f4' title='WATER'
+            onPress={() => { Alert.alert('Thanks for the drink!') }}
+            />
         </View>
       );
     } else if (this.state.stage === 'sprout') {
       return (
         <View>
-          <Button style={styles.button} backgroundColor='#468728' title='WEED' />
-          <Button style={styles.button} backgroundColor='#0478f4' title='WATER' />
-          <Button style={styles.button} backgroundColor='#49280f' title='FERTILIZE' />
+          <Button style={styles.button} backgroundColor='#468728' title='WEED'
+            onPress={() => { Alert.alert('Good job cleaning up!') }}
+            />
+          <Button style={styles.button} backgroundColor='#0478f4' title='WATER'
+            onPress={() => { Alert.alert('Thanks for the drink!') }}
+            />
+          <Button style={styles.button} backgroundColor='#49280f' title='FERTILIZE'
+            onPress={() => { Alert.alert('It tastes so yummy!') }}
+            />
         </View>
       );
     } else if (this.state.stage === 'leaf') {
       return (
         <View>
-          <Button style={styles.button} backgroundColor='#468728' title='WEED' />
-          <Button style={styles.button} backgroundColor='#0478f4' title='WATER' />
-          <Button style={styles.button} backgroundColor='#49280f' title='FERTILIZE' />
+          <Button style={styles.button} backgroundColor='#468728' title='WEED'
+            onPress={() => { Alert.alert('Good job cleaning up!') }}
+            />
+          <Button style={styles.button} backgroundColor='#0478f4' title='WATER'
+            onPress={() => { Alert.alert('Thanks for the drink!') }}
+            />
+          <Button style={styles.button} backgroundColor='#49280f' title='FERTILIZE'
+            onPress={() => { Alert.alert('It tastes so yummy!') }}
+            />
         </View>
       );
     } else if (this.state.stage === 'flower') {
       return (
         <View>
-          <Button style={styles.button} backgroundColor='#0478f4' title='WATER' />
-          <Button style={styles.button} backgroundColor='#49280f' title='FERTILIZE' />
+          <Button style={styles.button} backgroundColor='#0478f4' title='WATER'
+            onPress={() => { Alert.alert('Thanks for the drink!') }}
+            />
+          <Button style={styles.button} backgroundColor='#49280f' title='FERTILIZE'
+            onPress={() => { Alert.alert('It tastes so yummy!') }}
+            />
         </View>
       );
     } else if (this.state.stage === 'seeding') {
       return (
         <View>
-          <Button style={styles.button} backgroundColor='#e5853b' title='HARVEST' />
+          <Button style={styles.button} backgroundColor='#e5853b' title='HARVEST'
+            onPress={() => { Alert.alert('Enjoy your harvest! You deserve it!') }}
+            />
         </View>
       );
     }

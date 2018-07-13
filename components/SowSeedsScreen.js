@@ -4,7 +4,8 @@ import {
   Text,
   View,
   Platform,
-  TextInput
+  TextInput,
+  Alert
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Button } from 'react-native-elements';
@@ -83,6 +84,7 @@ export default class Hike extends Component {
       origin_lat: this.state.current_lat,
       origin_lon: this.state.current_lon,
     });
+    Alert.alert('You picked your start point!');
   }
 
   setDestinationLocation = () => {
@@ -91,19 +93,21 @@ export default class Hike extends Component {
       lon: this.state.current_lon,
     });
     this.getDistance();
+    Alert.alert('You picked your end point!');
   }
 
   getDistance = () => {
     axios.get(`https://maps.googleapis.com/maps/api/directions/json?origin=${this.state.origin_lat},${this.state.origin_lon}&destination=${this.state.lat},${this.state.lon}&key=${GOOGLE_MAPS_APIKEY}&mode=walking`)
       .then((response) => {
         const originDistance = response.data.routes[0].legs[0].distance.text.split(" ");
+        let distance = 0;
         if (originDistance[1] === 'ft') {
-          const distance = Number((parseFloat(originDistance[0]) / 5280).toFixed(1));
+          distance = Number((parseFloat(originDistance[0]) / 5280).toFixed(1));
           this.setState({
             distance,
           })
         } else {
-          const distance = Number((parseFloat(originDistance[0])).toFixed(1));
+          distance = Number((parseFloat(originDistance[0])).toFixed(1));
           this.setState({
             distance,
           })
@@ -120,6 +124,7 @@ export default class Hike extends Component {
       .then((response) => {
         this.clearForm();
         Actions.hikeDetails({hike: response.data});
+        Alert.alert('You just created a new hike!');
       })
       .catch((error) => {
         console.log(error);
