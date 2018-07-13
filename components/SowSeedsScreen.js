@@ -154,7 +154,7 @@ export default class Hike extends Component {
             onPress={this.setDestinationLocation}
             />
         </View>
-        <Text style={styles.subtitle}>Distance: {this.state.distance} miles</Text>
+        <Text style={styles.text}>Distance: {this.state.distance} miles</Text>
         <Text style={styles.subtitle}>Hike Name</Text>
         <TextInput
           style={styles.input}
@@ -162,7 +162,7 @@ export default class Hike extends Component {
           value={this.state.name}
           />
         <Text style={styles.subtitle}>Nicknames</Text>
-        <Text style={styles.text}>(use ONLY ONE space as seperators)</Text>
+        <Text style={styles.note}>(use ONLY ONE space as seperators)</Text>
         <TextInput
           style={styles.input}
           onChangeText={(nicknames) => this.parseNicknames(nicknames)}
@@ -238,6 +238,15 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   text: {
+    ...Platform.select({
+         ios: { fontFamily: 'Optima', },
+         android: { fontFamily: 'sans-serif' }
+    }),
+    fontSize: 20,
+    padding: 5,
+    textAlign: 'center',
+  },
+  note: {
     ...Platform.select({
          ios: { fontFamily: 'Optima', },
          android: { fontFamily: 'sans-serif' }
