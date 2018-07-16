@@ -157,7 +157,7 @@ export default class Hike extends Component {
           onChangeText={(name) => this.setState({name})}
           value={this.state.name}
           />
-        <Text style={styles.subtitle}>Nicknames</Text>
+        <Text style={styles.subtitle}>Plant Nicknames</Text>
         <Text style={styles.smalltext}>(use ONLY ONE space as seperators)</Text>
         <TextInput
           style={styles.input}
