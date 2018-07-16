@@ -114,7 +114,7 @@ export default class Analytics extends Component {
     return (
       <View>
         <Text style={styles.header}>HIKE & SEED</Text>
-        <ScrollView contentContainerStyle={{backgroundColor: 'white'}}>
+        <ScrollView contentContainerStyle={{backgroundColor: 'white'}} style={styles.scrollview}>
           <Text style={styles.title}>Analytics</Text>
           <View>
             <Text style={styles.subtitle}>Hiking Heatmap</Text>

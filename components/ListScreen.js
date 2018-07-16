@@ -43,7 +43,7 @@ export default class List extends Component {
     return (
       <View>
         <Text style={styles.header}>HIKE & SEED</Text>
-        <ScrollView>
+        <ScrollView style={styles.scrollview}>
           <Text style={styles.title}>Hike List</Text>
           {this.renderHikeList()}
         </ScrollView>

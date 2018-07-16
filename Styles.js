@@ -9,7 +9,7 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   subcontainer: {
-    flex: 0.5,
+    flex: 0.6,
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'flex-start',
@@ -125,5 +125,8 @@ export default StyleSheet.create({
     width: 70,
     height: 70,
     margin: 10,
+  },
+  scrollview: {
+    marginBottom: 100,
   },
 });
