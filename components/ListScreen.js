@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView } from 'react-native';
+import { Text, View, ScrollView, Alert } from 'react-native';
 import axios from 'axios';
 
 import Hike from './Hike';
@@ -23,9 +23,7 @@ export default class List extends Component {
       });
     })
     .catch((error) => {
-      this.setState({
-        message: error.message
-      });
+      Alert.alert(error.message);
     });
   }
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView, Dimensions } from 'react-native';
+import { Text, View, ScrollView, Dimensions, Alert } from 'react-native';
 import { BarChart, ContributionGraph } from 'react-native-chart-kit';
 import axios from 'axios';
 
@@ -34,9 +34,7 @@ export default class Analytics extends Component {
       });
     })
     .catch((error) => {
-      this.setState({
-        message: error.message
-      });
+      Alert.alert(error.message);
     });
   }
 

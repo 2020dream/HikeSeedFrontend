@@ -54,9 +54,7 @@ export default class Hike extends Component {
   getLocationAsync = async () => {
     let { status } = await Permissions.askAsync(Permissions.LOCATION);
     if (status !== 'granted') {
-      this.setState({
-        errorMessage: 'Permission to access location was denied',
-      });
+      Alert.alert('Permission to access location was denied.');
     }
 
     let currentLocation = await Location.getCurrentPositionAsync({});
@@ -107,7 +105,7 @@ export default class Hike extends Component {
         }
       })
       .catch((error) => {
-        console.log(error);
+        Alert.alert(error.message);
       });
   }
 
@@ -120,7 +118,7 @@ export default class Hike extends Component {
         Alert.alert('You just created a new hike!');
       })
       .catch((error) => {
-        console.log(error);
+        Alert.alert(error.message);
       });
   }
 

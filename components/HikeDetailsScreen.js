@@ -196,7 +196,7 @@ export default class HikeDetails extends Component {
         });
       })
       .catch((error) => {
-        console.log(error);
+        Alert.alert(error.message);
       });
   }
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, Alert } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import MapViewDirections from 'react-native-maps-directions';
 import { MapView, Location, Permissions } from 'expo';
@@ -16,8 +16,8 @@ export default class MapScreen extends Component {
 
     this.state = {
       location: {
-        latitude: 47.759953,
-        longitude: -122.204483,
+        latitude: 47.7293109,
+        longitude: -122.2633290,
       },
       delta: {
         latitudeDelta: 0.5,
@@ -36,18 +36,14 @@ export default class MapScreen extends Component {
       });
     })
     .catch((error) => {
-      this.setState({
-        message: error.message
-      });
+      Alert.alert(error.message);
     });
   }
 
   getLocationAsync = async () => {
     let { status } = await Permissions.askAsync(Permissions.LOCATION);
     if (status !== 'granted') {
-      this.setState({
-        errorMessage: 'Permission to access location was denied',
-      });
+      Alert.alert('Permission to access location was denied.');
     }
 
     let currentLocation = await Location.getCurrentPositionAsync({});
