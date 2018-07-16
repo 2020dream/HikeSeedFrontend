@@ -55,7 +55,7 @@ export default StyleSheet.create({
          android: { fontFamily: 'sans-serif-medium' }
     }),
     fontSize: 20,
-    padding: 5,
+    padding: 3,
     textAlign: 'center',
   },
   buttonContainer: {

@@ -16,8 +16,8 @@ export default class MapScreen extends Component {
 
     this.state = {
       location: {
-        latitude: 47.7293109,
-        longitude: -122.2633290,
+        latitude: 47.6076843,
+        longitude: -122.3373278,
       },
       delta: {
         latitudeDelta: 0.5,

@@ -41,9 +41,9 @@ export default class List extends Component {
 
   render() {
     return (
-      <View>
+      <View style={{backgroundColor:'white'}}>
         <Text style={styles.header}>HIKE & SEED</Text>
-        <ScrollView style={styles.scrollview}>
+        <ScrollView contentContainerStyle={{backgroundColor: 'white'}} style={styles.scrollview}>
           <Text style={styles.title}>Hike List</Text>
           {this.renderHikeList()}
         </ScrollView>

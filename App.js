@@ -39,6 +39,15 @@ export default class App extends React.Component {
               paddingTop: 35,
             }}
           >
+          <Scene
+            key="newHike"
+            title="New Hike"
+            iconName="leaf"
+            icon={TabIcon}
+            hideNavBar={true}
+            component={SowSeedsScreen}
+            initial={true}
+            />
             <Scene
               key="map"
               title="Map"
@@ -46,7 +55,6 @@ export default class App extends React.Component {
               icon={TabIcon}
               hideNavBar={true}
               component={MapScreen}
-              initial={true}
               />
             <Scene
               key="list"
@@ -63,14 +71,6 @@ export default class App extends React.Component {
               icon={TabIcon}
               hideNavBar={true}
               component={AnalyticsScreen}
-              />
-            <Scene
-              key="newHike"
-              title="New Hike"
-              iconName="leaf"
-              icon={TabIcon}
-              hideNavBar={true}
-              component={SowSeedsScreen}
               />
           </Scene>
           <Scene
