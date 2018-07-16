@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Text, View, Image, Alert } from 'react-native';
-import PropTypes from 'prop-types';
 import { Button } from "react-native-elements";
+import PropTypes from 'prop-types';
 import axios from 'axios';
+
 import styles from '../Styles';
 
 const seedUri = 'https://storage.googleapis.com/capstone-images/seed.png';

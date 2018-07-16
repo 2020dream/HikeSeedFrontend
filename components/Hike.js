@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
-import PropTypes from 'prop-types';
 import { Actions } from 'react-native-router-flux';
+import PropTypes from 'prop-types';
+
 import styles from '../Styles';
 
 export default class Hike extends Component {

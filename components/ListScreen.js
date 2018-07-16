@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, ScrollView } from 'react-native';
 import axios from 'axios';
+
 import Hike from './Hike';
 import styles from '../Styles';
 

@@ -1,16 +1,17 @@
 import React from 'react';
-import { StyleSheet, Text, View, Platform } from 'react-native';
-import PropTypes from 'prop-types';
+import { View } from 'react-native';
 import { Router, Scene } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import PropTypes from 'prop-types';
 
 import MapScreen from './components/MapScreen';
 import ListScreen from './components/ListScreen';
 import HikeDetailsScreen from './components/HikeDetailsScreen';
-import SowSeedsScreen from './components/SowSeedsScreen';
 import AnalyticsScreen from './components/AnalyticsScreen';
+import SowSeedsScreen from './components/SowSeedsScreen';
 
 class TabIcon extends React.Component {
+
   static propTypes = {
     iconName: PropTypes.string.isRequired,
   }
@@ -56,20 +57,20 @@ export default class App extends React.Component {
               component={ListScreen}
               />
             <Scene
-              key="newHike"
-              title="New Hike"
-              iconName="leaf"
-              icon={TabIcon}
-              hideNavBar={true}
-              component={SowSeedsScreen}
-              />
-            <Scene
               key="analytics"
               title="Analytics"
               iconName="bar-chart"
               icon={TabIcon}
               hideNavBar={true}
               component={AnalyticsScreen}
+              />
+            <Scene
+              key="newHike"
+              title="New Hike"
+              iconName="leaf"
+              icon={TabIcon}
+              hideNavBar={true}
+              component={SowSeedsScreen}
               />
           </Scene>
           <Scene

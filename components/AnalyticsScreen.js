@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView } from 'react-native';
+import { Text, View, ScrollView, Dimensions } from 'react-native';
+import { BarChart, ContributionGraph } from 'react-native-chart-kit';
 import axios from 'axios';
-import { BarChart, ContributionGraph } from 'react-native-chart-kit'
-import { Dimensions } from 'react-native';
+
 import styles from '../Styles';
 
 const screenWidth = Dimensions.get('window').width;

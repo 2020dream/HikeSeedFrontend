@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
-import { MapView } from 'expo';
-import axios from 'axios';
 import { Actions } from 'react-native-router-flux';
-import { Location, Permissions } from 'expo';
 import MapViewDirections from 'react-native-maps-directions';
+import { MapView, Location, Permissions } from 'expo';
+import axios from 'axios';
+
 import styles from '../Styles';
 
 const GOOGLE_MAPS_APIKEY = 'AIzaSyC_NNhhIaGqjr9Ca-08_m3hv21SsfRDQvg';
@@ -15,14 +15,13 @@ export default class MapScreen extends Component {
     super(props);
 
     this.state = {
-      // Default location is Bothell
       location: {
         latitude: 47.759953,
         longitude: -122.204483,
       },
       delta: {
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
+        latitudeDelta: 0.1,
+        longitudeDelta: 0.05,
       },
       hikes: [],
     }
@@ -52,7 +51,6 @@ export default class MapScreen extends Component {
     }
 
     let currentLocation = await Location.getCurrentPositionAsync({});
-    // Current Location is Ada in iOS simulator
     this.setState({
       location: {
         latitude: currentLocation.coords.latitude,
