@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Alert } from 'react-native';
+import { Text, View, Alert, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import MapViewDirections from 'react-native-maps-directions';
 import { MapView, Location, Permissions } from 'expo';
@@ -64,7 +64,13 @@ export default class MapScreen extends Component {
           title={hike.name}
           description={`Distance: ${hike.distance} miles, Date: ${hike.date}`}
           onCalloutPress={() => Actions.hikeDetails({hike: hike})}
+        >
+        <Image
+          source={require('./../images/flower.png')}
+          anchor={(1, 1)}
+          style={styles.marker}
         />
+        </MapView.Marker>
       );
     });
     return hikeMarkers;
