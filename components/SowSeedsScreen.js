@@ -91,8 +91,7 @@ export default class Hike extends Component {
     this.setState({
       lat: this.state.current_lat,
       lon: this.state.current_lon,
-    });
-    this.getDistance();
+    }, () => this.getDistance());
     Alert.alert('You picked your end point!');
   }
 
