@@ -20,8 +20,8 @@ export default class MapScreen extends Component {
         longitude: -122.204483,
       },
       delta: {
-        latitudeDelta: 0.1,
-        longitudeDelta: 0.05,
+        latitudeDelta: 0.5,
+        longitudeDelta: 0.25,
       },
       hikes: [],
     }
