@@ -3,6 +3,7 @@ import {
   StyleSheet,
   Text,
   View,
+  ScrollView,
   Platform
 } from 'react-native';
 import axios from 'axios';
@@ -47,10 +48,12 @@ export default class List extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View>
         <Text style={styles.header}>HIKE & SEED</Text>
-        <Text style={styles.title}>Hike List</Text>
-        {this.renderHikeList()}
+        <ScrollView>
+          <Text style={styles.title}>Hike List</Text>
+          {this.renderHikeList()}
+        </ScrollView>
       </View>
     );
   }

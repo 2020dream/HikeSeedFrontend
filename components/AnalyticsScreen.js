@@ -119,9 +119,9 @@ export default class Analytics extends Component {
 
   render() {
     return (
-      <ScrollView contentContainerStyle={{flex:1}}>
-        <View style={styles.container}>
-          <Text style={styles.header}>HIKE & SEED</Text>
+      <View>
+        <Text style={styles.header}>HIKE & SEED</Text>
+        <ScrollView contentContainerStyle={{backgroundColor: 'white'}}>
           <Text style={styles.title}>Analytics</Text>
           <View>
             <Text style={styles.subtitle}>Hiking Heatmap</Text>
@@ -147,8 +147,8 @@ export default class Analytics extends Component {
               style={styles.chart}
               />
           </View>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </View>
     );
   }
 }

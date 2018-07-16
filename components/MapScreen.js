@@ -93,7 +93,7 @@ export default class MapScreen extends Component {
           destination={destination}
           apikey={GOOGLE_MAPS_APIKEY}
           mode='walking'
-          strokeWidth={2}
+          strokeWidth={1}
           strokeColor='purple'
           />
       );
@@ -103,7 +103,7 @@ export default class MapScreen extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View>
         <Text style={styles.header}>HIKE & SEED</Text>
         <MapView
           style={styles.map}
