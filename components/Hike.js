@@ -20,8 +20,8 @@ export default class Hike extends Component {
           >
           {this.props.hike.name}
         </Text>
-        <Text style={styles.subtext}>Distance: {this.props.hike.distance} miles</Text>
-        <Text style={styles.subtext}>Date: {this.props.hike.date}</Text>
+        <Text style={styles.smalltext}>Distance: {this.props.hike.distance} miles</Text>
+        <Text style={styles.smalltext}>Date: {this.props.hike.date}</Text>
       </View>
     );
   }

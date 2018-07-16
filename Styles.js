@@ -8,6 +8,13 @@ export default StyleSheet.create({
     height: '100%',
     alignItems: 'center',
   },
+  subcontainer: {
+    flex: 0.5,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'flex-start',
+    padding: 10,
+  },
   header: {
     ...Platform.select({
         ios: {
@@ -28,10 +35,6 @@ export default StyleSheet.create({
     borderColor: 'grey',
     borderWidth: StyleSheet.hairlineWidth,
   },
-  map: {
-    width: '100%',
-    height: '100%',
-  },
   title: {
     ...Platform.select({
         ios: {
@@ -46,13 +49,6 @@ export default StyleSheet.create({
     padding: 10,
     textAlign: 'center',
   },
-  buttonContainer: {
-    flex: 0.2,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'flex-start',
-    padding: 10,
-  },
   subtitle: {
     ...Platform.select({
          ios: { fontFamily: 'Optima-Bold', },
@@ -61,6 +57,17 @@ export default StyleSheet.create({
     fontSize: 20,
     padding: 5,
     textAlign: 'center',
+  },
+  buttonContainer: {
+    flex: 0.2,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'flex-start',
+    padding: 10,
+  },
+  button: {
+    width: 130,
+    marginTop: 10,
   },
   text: {
     ...Platform.select({
@@ -71,7 +78,16 @@ export default StyleSheet.create({
     padding: 5,
     textAlign: 'center',
   },
-  note: {
+  midtext: {
+    ...Platform.select({
+         ios: { fontFamily: 'Optima', },
+         android: { fontFamily: 'sans-serif' }
+    }),
+    fontSize: 18,
+    padding: 5,
+    textAlign: 'center',
+  },
+  smalltext: {
     ...Platform.select({
          ios: { fontFamily: 'Optima', },
          android: { fontFamily: 'sans-serif' }
@@ -79,6 +95,9 @@ export default StyleSheet.create({
     fontSize: 15,
     padding: 5,
     textAlign: 'center',
+  },
+  nicknames: {
+    alignItems: 'flex-start',
   },
   input: {
     borderColor: '#468728',
@@ -93,34 +112,9 @@ export default StyleSheet.create({
     textAlign: 'center',
     padding: 5,
   },
-  button: {
-    width: 130,
-    marginTop: 10,
-  },
-  subtext: {
-    ...Platform.select({
-         ios: { fontFamily: 'Optima', },
-         android: { fontFamily: 'sans-serif' }
-    }),
-    fontSize: 15,
-    padding: 5,
-    textAlign: 'center',
-  },
-  subcontainer: {
-    flex: 0.5,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'flex-start',
-    padding: 10,
-  },
-  midtext: {
-    ...Platform.select({
-         ios: { fontFamily: 'Optima', },
-         android: { fontFamily: 'sans-serif' }
-    }),
-    fontSize: 18,
-    padding: 5,
-    textAlign: 'center',
+  map: {
+    width: '100%',
+    height: '100%',
   },
   image: {
     width: 130,
@@ -132,7 +126,4 @@ export default StyleSheet.create({
     height: 70,
     margin: 10,
   },
-  nicknames: {
-    alignItems: 'flex-start',
-  }
 });

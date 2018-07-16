@@ -118,8 +118,8 @@ export default class Analytics extends Component {
           <Text style={styles.title}>Analytics</Text>
           <View>
             <Text style={styles.subtitle}>Hiking Heatmap</Text>
-            <Text style={styles.subtext}>Total Number of Hikes: {this.state.hikes.length}</Text>
-            <Text style={styles.subtext}>Total Hiking Distance: {this.calculateHikingDistance()} miles</Text>
+            <Text style={styles.smalltext}>Total Number of Hikes: {this.state.hikes.length}</Text>
+            <Text style={styles.smalltext}>Total Hiking Distance: {this.calculateHikingDistance()} miles</Text>
             <ContributionGraph
               values={this.parseHikingData()}
               endDate={new Date('2018-09-01')}
@@ -131,7 +131,7 @@ export default class Analytics extends Component {
           </View>
           <View>
             <Text style={styles.subtitle}>Plant Distribution</Text>
-            <Text style={styles.subtext}>Total Number of Plants: {this.calculateSeedCount()}</Text>
+            <Text style={styles.smalltext}>Total Number of Plants: {this.calculateSeedCount()}</Text>
             <BarChart
               data={this.parsePlantData()}
               width={screenWidth}
