@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  Platform
-} from 'react-native';
+import { Text, View, ScrollView } from 'react-native';
 import axios from 'axios';
-
 import Hike from './Hike';
+import styles from '../Styles';
 
 export default class List extends Component {
 
@@ -57,48 +51,5 @@ export default class List extends Component {
       </View>
     );
   }
-}
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#fff',
-    justifyContent: 'flex-start',
-    width: '100%',
-    height: '100%',
-    alignItems: 'center',
-  },
-  header: {
-    ...Platform.select({
-        ios: {
-          fontFamily: 'Optima-Bold',
-          paddingTop: '15%',
-        },
-        android: {
-          fontFamily: 'sans-serif-medium',
-          paddingTop: '10%',
-        }
-    }),
-    fontSize: 30,
-    color: 'orange',
-    paddingBottom: 5,
-    textAlign: 'center',
-    backgroundColor: '#f0f2ef',
-    width: '100%',
-    borderColor: 'grey',
-    borderWidth: StyleSheet.hairlineWidth,
-  },
-  title: {
-    ...Platform.select({
-        ios: {
-          fontFamily: 'Optima-Bold',
-        },
-        android: {
-          fontFamily: 'sans-serif-medium',
-        }
-    }),
-    fontSize: 25,
-    color: '#468728',
-    padding: 10,
-    textAlign: 'center',
-  },
-});
+}

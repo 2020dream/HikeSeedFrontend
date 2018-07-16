@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Platform
-} from 'react-native';
+import { Text, View } from 'react-native';
 import { MapView } from 'expo';
 import axios from 'axios';
 import { Actions } from 'react-native-router-flux';
 import { Location, Permissions } from 'expo';
-import Moment from 'moment';
 import MapViewDirections from 'react-native-maps-directions';
+import styles from '../Styles';
 
 const GOOGLE_MAPS_APIKEY = 'AIzaSyC_NNhhIaGqjr9Ca-08_m3hv21SsfRDQvg';
 
@@ -117,38 +112,5 @@ export default class MapScreen extends Component {
       </View>
     );
   }
-}
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#fff',
-    justifyContent: 'flex-start',
-    width: '100%',
-    height: '100%',
-    alignItems: 'center',
-  },
-  header: {
-    ...Platform.select({
-        ios: {
-          fontFamily: 'Optima-Bold',
-          paddingTop: '15%',
-        },
-        android: {
-          fontFamily: 'sans-serif-medium',
-          paddingTop: '10%',
-        }
-    }),
-    fontSize: 30,
-    color: 'orange',
-    paddingBottom: 5,
-    textAlign: 'center',
-    backgroundColor: '#f0f2ef',
-    width: '100%',
-    borderColor: 'grey',
-    borderWidth: StyleSheet.hairlineWidth,
-  },
-  map: {
-    width: '100%',
-		height: '100%',
-  }
-});
+}

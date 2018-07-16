@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  Platform
-} from 'react-native';
+import { Text, View, ScrollView } from 'react-native';
 import axios from 'axios';
 import { BarChart, ContributionGraph } from 'react-native-chart-kit'
 import { Dimensions } from 'react-native';
+import styles from '../Styles';
 
 const screenWidth = Dimensions.get('window').width;
 const chartConfig = {
@@ -125,8 +120,8 @@ export default class Analytics extends Component {
           <Text style={styles.title}>Analytics</Text>
           <View>
             <Text style={styles.subtitle}>Hiking Heatmap</Text>
-            <Text style={styles.text}>Total Number of Hikes: {this.state.hikes.length}</Text>
-            <Text style={styles.text}>Total Hiking Distance: {this.calculateHikingDistance()} miles</Text>
+            <Text style={styles.subtext}>Total Number of Hikes: {this.state.hikes.length}</Text>
+            <Text style={styles.subtext}>Total Hiking Distance: {this.calculateHikingDistance()} miles</Text>
             <ContributionGraph
               values={this.parseHikingData()}
               endDate={new Date('2018-09-01')}
@@ -138,7 +133,7 @@ export default class Analytics extends Component {
           </View>
           <View>
             <Text style={styles.subtitle}>Plant Distribution</Text>
-            <Text style={styles.text}>Total Number of Plants: {this.calculateSeedCount()}</Text>
+            <Text style={styles.subtext}>Total Number of Plants: {this.calculateSeedCount()}</Text>
             <BarChart
               data={this.parsePlantData()}
               width={screenWidth}
@@ -151,65 +146,5 @@ export default class Analytics extends Component {
       </View>
     );
   }
-}
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#fff',
-    justifyContent: 'flex-start',
-    width: '100%',
-    height: '100%',
-  },
-  header: {
-    ...Platform.select({
-        ios: {
-          fontFamily: 'Optima-Bold',
-          paddingTop: '15%',
-        },
-        android: {
-          fontFamily: 'sans-serif-medium',
-          paddingTop: '10%',
-        }
-    }),
-    fontSize: 30,
-    color: 'orange',
-    paddingBottom: 5,
-    textAlign: 'center',
-    backgroundColor: '#f0f2ef',
-    width: '100%',
-    borderColor: 'grey',
-    borderWidth: StyleSheet.hairlineWidth,
-  },
-  title: {
-    ...Platform.select({
-        ios: {
-          fontFamily: 'Optima-Bold',
-        },
-        android: {
-          fontFamily: 'sans-serif-medium',
-        }
-    }),
-    fontSize: 25,
-    color: '#468728',
-    padding: 10,
-    textAlign: 'center',
-  },
-  subtitle: {
-    ...Platform.select({
-         ios: { fontFamily: 'Optima-Bold', },
-         android: { fontFamily: 'sans-serif-medium' }
-    }),
-    fontSize: 20,
-    padding: 5,
-    textAlign: 'center',
-  },
-  text: {
-    ...Platform.select({
-         ios: { fontFamily: 'Optima', },
-         android: { fontFamily: 'sans-serif' }
-    }),
-    fontSize: 15,
-    padding: 5,
-    textAlign: 'center',
-  }
-});
+}

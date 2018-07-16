@@ -1,16 +1,9 @@
 import React, { Component } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  Platform,
-  Alert
-} from 'react-native';
+import { Text, View, Image, Alert } from 'react-native';
 import PropTypes from 'prop-types';
-import Moment from 'moment';
 import { Button } from "react-native-elements";
 import axios from 'axios';
+import styles from '../Styles';
 
 const seedUri = 'https://storage.googleapis.com/capstone-images/seed.png';
 const sproutUri = 'https://storage.googleapis.com/capstone-images/sprout.png';
@@ -83,7 +76,7 @@ export default class HikeDetails extends Component {
     const nicknames = this.props.hike.seeds.map((seed, index) => {
       return (
         <View style={styles.nicknames} key={index}>
-          <Text style={styles.text}> 🌻 {seed.nickname}</Text>
+          <Text style={styles.midtext}> 🌻 {seed.nickname}</Text>
         </View>
       );
     })
@@ -210,10 +203,10 @@ export default class HikeDetails extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>{this.props.hike.name}</Text>
-        <Text style={styles.text}>Distance: {this.props.hike.distance} miles</Text>
-        <Text style={styles.text}>Date: {this.props.hike.date}</Text>
-        <Text style={styles.text}>Number of Plants: {this.props.hike.seeds.length}</Text>
-        <Text style={styles.text}>Plant Growth Stage: {this.state.stage}</Text>
+        <Text style={styles.midtext}>Distance: {this.props.hike.distance} miles</Text>
+        <Text style={styles.midtext}>Date: {this.props.hike.date}</Text>
+        <Text style={styles.midtext}>Number of Plants: {this.props.hike.seeds.length}</Text>
+        <Text style={styles.midtext}>Plant Growth Stage: {this.state.stage}</Text>
         <View style={styles.subcontainer}>
           <Image
             style={styles.image}
@@ -229,72 +222,5 @@ export default class HikeDetails extends Component {
       </View>
     );
   }
-}
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#fff',
-    justifyContent: 'flex-start',
-    width: '100%',
-    height: '100%',
-    alignItems: 'center',
-  },
-  subcontainer: {
-    flex: 0.5,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'flex-start',
-    padding: 10,
-  },
-  title: {
-    ...Platform.select({
-        ios: {
-          fontFamily: 'Optima-Bold',
-          paddingTop: 10,
-        },
-        android: {
-          fontFamily: 'sans-serif-medium',
-          paddingTop: 10,
-        }
-    }),
-    fontSize: 25,
-    color: '#468728',
-    paddingBottom: 10,
-    textAlign: 'center',
-  },
-  subtitle: {
-    ...Platform.select({
-         ios: { fontFamily: 'Optima-Bold', },
-         android: { fontFamily: 'sans-serif-medium' }
-    }),
-    fontSize: 20,
-    padding: 5,
-    textAlign: 'center',
-  },
-  text: {
-    ...Platform.select({
-         ios: { fontFamily: 'Optima', },
-         android: { fontFamily: 'sans-serif' }
-    }),
-    fontSize: 18,
-    padding: 5,
-    textAlign: 'center',
-  },
-  image: {
-    width: 130,
-    height: 130,
-    margin: 10,
-  },
-  smallImage: {
-    width: 70,
-    height: 70,
-    margin: 10,
-  },
-  nicknames: {
-    alignItems: 'flex-start',
-  },
-  button: {
-    width: 120,
-    marginTop: 10,
-  }
-});
+}

@@ -1,21 +1,14 @@
 import React, { Component } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Platform,
-  TextInput,
-  Alert
-} from 'react-native';
+import { Text, View, TextInput, Alert } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Button } from 'react-native-elements';
 import { Location, Permissions } from 'expo';
 import axios from 'axios';
 import Moment from 'moment';
+import styles from '../Styles';
 
 const GOOGLE_MAPS_APIKEY = 'AIzaSyC_NNhhIaGqjr9Ca-08_m3hv21SsfRDQvg';
 const GEOLOCATION_OPTIONS = { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 };
-
 
 export default class Hike extends Component {
 
@@ -181,99 +174,5 @@ export default class Hike extends Component {
       </View>
     );
   }
-}
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#fff',
-    justifyContent: 'flex-start',
-    width: '100%',
-    height: '100%',
-    alignItems: 'center',
-  },
-  buttonContainer: {
-    flex: 0.2,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'flex-start',
-    padding: 10,
-  },
-  header: {
-    ...Platform.select({
-        ios: {
-          fontFamily: 'Optima-Bold',
-          paddingTop: '15%',
-        },
-        android: {
-          fontFamily: 'sans-serif-medium',
-          paddingTop: '10%',
-        }
-    }),
-    fontSize: 30,
-    color: 'orange',
-    paddingBottom: 5,
-    textAlign: 'center',
-    backgroundColor: '#f0f2ef',
-    width: '100%',
-    borderColor: 'grey',
-    borderWidth: StyleSheet.hairlineWidth,
-  },
-  title: {
-    ...Platform.select({
-        ios: {
-          fontFamily: 'Optima-Bold',
-        },
-        android: {
-          fontFamily: 'sans-serif-medium',
-        }
-    }),
-    fontSize: 25,
-    color: '#468728',
-    padding: 10,
-    textAlign: 'center',
-  },
-  subtitle: {
-    ...Platform.select({
-         ios: { fontFamily: 'Optima-Bold', },
-         android: { fontFamily: 'sans-serif-medium' }
-    }),
-    fontSize: 20,
-    padding: 5,
-    textAlign: 'center',
-  },
-  text: {
-    ...Platform.select({
-         ios: { fontFamily: 'Optima', },
-         android: { fontFamily: 'sans-serif' }
-    }),
-    fontSize: 20,
-    padding: 5,
-    textAlign: 'center',
-  },
-  note: {
-    ...Platform.select({
-         ios: { fontFamily: 'Optima', },
-         android: { fontFamily: 'sans-serif' }
-    }),
-    fontSize: 15,
-    padding: 5,
-    textAlign: 'center',
-  },
-  input: {
-    borderColor: '#468728',
-    borderWidth: StyleSheet.hairlineWidth,
-    ...Platform.select({
-         ios: { fontFamily: 'Optima', },
-         android: { fontFamily: 'sans-serif' }
-    }),
-    marginBottom: 10,
-    fontSize: 20,
-    width: '80%',
-    textAlign: 'center',
-    padding: 5,
-  },
-  button: {
-    width: 130,
-    marginTop: 10,
-  }
-});
+}
