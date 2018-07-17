@@ -175,7 +175,7 @@ export default class HikeDetails extends Component {
   renderFertilizeButton = () => {
     return(
       <Button style={styles.button} backgroundColor='#49280f' title='FERTILIZE'
-        onPress={() => { Alert.alert('It tastes so yummy!') }}
+        onPress={() => { Alert.alert('Yum yum!') }}
         />
     );
   }
