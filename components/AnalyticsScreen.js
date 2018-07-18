@@ -27,7 +27,7 @@ export default class Analytics extends Component {
   }
 
   componentDidMount = () => {
-    axios.get('https://zc-hike-seed.herokuapp.com/hikes')
+    axios.get('http://localhost:3000/hikes')
     .then((response) => {
       this.setState({
         hikes: response.data
@@ -71,6 +71,8 @@ export default class Analytics extends Component {
       'Leaf': 0,
       'Flower': 0,
       'Seeding': 0,
+      'Harvest': 0,
+      'Dead': 0,
     }
 
     const today = new Date();
@@ -80,7 +82,9 @@ export default class Analytics extends Component {
       const plantDate = new Date(date[2], date[0] - 1, date[1]);
       const age = Math.abs(today - plantDate) / 86400000;
 
-      if (age <= 1) {
+      if (hike.is_harvest === true) {
+        plantDataHash['Harvest'] += hike.seeds.length;
+      } else if (age <= 1) {
         plantDataHash['Seed'] += hike.seeds.length;
       } else if (age <= 3) {
         plantDataHash['Sprout'] += hike.seeds.length;
@@ -88,8 +92,10 @@ export default class Analytics extends Component {
         plantDataHash['Leaf'] += hike.seeds.length;
       } else if (age <= 16) {
         plantDataHash['Flower'] += hike.seeds.length;
-      } else {
+      } else if (age <= 25) {
         plantDataHash['Seeding'] += hike.seeds.length;
+      } else {
+        plantDataHash['Dead'] += hike.seeds.length;
       }
     })
 

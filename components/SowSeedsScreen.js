@@ -111,7 +111,7 @@ export default class Hike extends Component {
 
   addHikeData = () => {
     const newHike = this.state;
-    axios.post('https://zc-hike-seed.herokuapp.com/hikes', newHike)
+    axios.post('http://localhost:3000/hikes', newHike)
       .then((response) => {
         this.clearForm();
         Actions.hikeDetails({hike: response.data});
