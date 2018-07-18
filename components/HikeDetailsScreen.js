@@ -11,6 +11,8 @@ const sproutUri = 'https://storage.googleapis.com/capstone-images/sprout.png';
 const leafUri = 'https://storage.googleapis.com/capstone-images/leaf.png';
 const flowerUri = 'https://storage.googleapis.com/capstone-images/flower.png';
 const seedingUri = 'https://storage.googleapis.com/capstone-images/seeding.png';
+const deadUri = 'https://storage.googleapis.com/capstone-images/dead.png';
+const harvestUri = 'https://storage.googleapis.com/capstone-images/harvest.png';
 
 // clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day, or partly-cloudy-night
 const sunnyUri = 'https://storage.googleapis.com/capstone-images/sunny.png';
@@ -43,7 +45,12 @@ export default class HikeDetails extends Component {
     const plantDate = new Date(date[2], date[0] - 1, date[1]);
     const age = Math.abs(today - plantDate) / 86400000;
 
-    if (age <= 1) {
+    if (this.props.hike.is_harvest === true) {
+      this.setState({
+        uri: harvestUri,
+        stage: 'harvested',
+      });
+    } else if (age <= 1) {
       this.setState({
         uri: seedUri,
         stage: 'seed',
@@ -63,10 +70,15 @@ export default class HikeDetails extends Component {
         uri: flowerUri,
         stage: 'flower',
       });
-    } else {
+    } else if (age <= 25){
       this.setState({
         uri: seedingUri,
-        stage: 'seeding'
+        stage: 'seeding',
+      });
+    } else {
+      this.setState({
+        uri: deadUri,
+        stage: 'dead',
       });
     }
 
@@ -183,9 +195,29 @@ export default class HikeDetails extends Component {
   renderHarvestButton = () => {
     return(
       <Button style={styles.button} backgroundColor='#e5853b' title='HARVEST'
-        onPress={() => { Alert.alert('Enjoy your harvest! You deserve it!') }}
+        onPress={() => {
+          this.updateIsHarvest();
+          Alert.alert('Enjoy your harvest! You deserve it!')
+         }}
         />
     );
+  }
+
+  updateIsHarvest = () => {
+    axios.put(`http://localhost:3000/hikes/${this.props.hike.id}`, {
+      params: {
+        is_harvest: true,
+      }
+    })
+      .then((response) => {
+        this.setState({
+          uri: harvestUri,
+          stage: 'harvested',
+        });
+      })
+      .catch((error) => {
+        Alert.alert(error.message);
+      });
   }
 
   getWeatherInfo = () => {

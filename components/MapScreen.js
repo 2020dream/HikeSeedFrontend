@@ -29,7 +29,7 @@ export default class MapScreen extends Component {
 
   componentDidMount = () => {
     this.getLocationAsync();
-    axios.get('https://zc-hike-seed.herokuapp.com/hikes')
+    axios.get('http://localhost:3000/hikes')
     .then((response) => {
       this.setState({
         hikes: response.data
