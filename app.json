@@ -2,6 +2,9 @@
   "expo": {
   "name": "Hike Seed",
   "icon": "./app-icon.png",
+  "splash": {
+    "image": "./images/splash.png"
+  },
   "version": "1.0.0",
   "slug": "hike-seed",
   "sdkVersion": "27.0.0",
