@@ -29,7 +29,7 @@ export default class MapScreen extends Component {
 
   componentDidMount = () => {
     this.getLocationAsync();
-    axios.get('http://localhost:3000/hikes')
+    axios.get('http://hike-env.wbcdfusnru.us-west-2.elasticbeanstalk.com/hikes')
     .then((response) => {
       this.setState({
         hikes: response.data

@@ -111,7 +111,7 @@ export default class Hike extends Component {
 
   addHikeData = () => {
     const newHike = this.state;
-    axios.post('http://localhost:3000/hikes', newHike)
+    axios.post('http://hike-env.wbcdfusnru.us-west-2.elasticbeanstalk.com/hikes', newHike)
       .then((response) => {
         this.clearForm();
         Actions.hikeDetails({hike: response.data});

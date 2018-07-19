@@ -204,7 +204,7 @@ export default class HikeDetails extends Component {
   }
 
   updateIsHarvest = () => {
-    axios.put(`http://localhost:3000/hikes/${this.props.hike.id}`, {
+    axios.put(`http://hike-env.wbcdfusnru.us-west-2.elasticbeanstalk.com/hikes/${this.props.hike.id}`, {
       params: {
         is_harvest: true,
       }
@@ -224,7 +224,7 @@ export default class HikeDetails extends Component {
     axios.get(`https://api.darksky.net/forecast/036954698c0274b1db364efe54ff6234/${this.props.hike.lat},${this.props.hike.lon}?exclude=minutely,currently,hourly,flags`)
       .then((response) => {
         this.setState({
-          weather: response.data.daily.icon,
+          weather: response.data.daily.data[0].icon,
         });
       })
       .catch((error) => {
