@@ -51,7 +51,7 @@ export default StyleSheet.create({
   },
   subtitle: {
     ...Platform.select({
-         ios: { fontFamily: 'Optima-Bold', },
+         ios: { fontFamily: 'Optima-Bold' },
          android: { fontFamily: 'sans-serif-medium' }
     }),
     fontSize: 20,
@@ -59,7 +59,10 @@ export default StyleSheet.create({
     textAlign: 'center',
   },
   buttonContainer: {
-    flex: 0.2,
+    ...Platform.select({
+         ios: { flex: 0.2 },
+         android: { flex: 0.3 }
+    }),
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'flex-start',
@@ -100,10 +103,12 @@ export default StyleSheet.create({
     alignItems: 'flex-start',
   },
   input: {
-    borderColor: '#468728',
-    borderWidth: StyleSheet.hairlineWidth,
     ...Platform.select({
-         ios: { fontFamily: 'Optima', },
+         ios: {
+           fontFamily: 'Optima',
+           borderColor: '#468728',
+           borderWidth: StyleSheet.hairlineWidth,
+          },
          android: { fontFamily: 'sans-serif' }
     }),
     marginBottom: 10,
@@ -131,6 +136,9 @@ export default StyleSheet.create({
     margin: 10,
   },
   scrollview: {
-    marginBottom: 100,
+    ...Platform.select({
+         ios: { marginBottom: 100 },
+         android: { marginBottom: 80 }
+    }),
   },
 });
