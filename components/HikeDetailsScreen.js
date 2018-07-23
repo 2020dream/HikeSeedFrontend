@@ -125,41 +125,43 @@ export default class HikeDetails extends Component {
   }
 
   renderButtons = () => {
-    if (this.state.stage === 'seed') {
-      return (
-        <View>
+    if (this.props.hike.seeds.length > 0) {
+      if (this.state.stage === 'seed') {
+        return (
+          <View>
           {this.renderWaterButton()}
-        </View>
-      );
-    } else if (this.state.stage === 'sprout') {
-      return (
-        <View>
+          </View>
+        );
+      } else if (this.state.stage === 'sprout') {
+        return (
+          <View>
           {this.renderWeedButton()}
           {this.renderWaterButton()}
           {this.renderFertilizeButton()}
-        </View>
-      );
-    } else if (this.state.stage === 'leaf') {
-      return (
-        <View>
+          </View>
+        );
+      } else if (this.state.stage === 'leaf') {
+        return (
+          <View>
           {this.renderWeedButton()}
           {this.renderWaterButton()}
           {this.renderFertilizeButton()}
-        </View>
-      );
-    } else if (this.state.stage === 'flower') {
-      return (
-        <View>
+          </View>
+        );
+      } else if (this.state.stage === 'flower') {
+        return (
+          <View>
           {this.renderWaterButton()}
           {this.renderFertilizeButton()}
-        </View>
-      );
-    } else if (this.state.stage === 'seeding') {
-      return (
-        <View>
+          </View>
+        );
+      } else if (this.state.stage === 'seeding') {
+        return (
+          <View>
           {this.renderHarvestButton()}
-        </View>
-      );
+          </View>
+        );
+      }
     }
   }
 
