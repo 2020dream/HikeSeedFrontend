@@ -6,6 +6,11 @@
 * [XCode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) is required to run iOS Simulator.
 * [Android Studio](https://developer.android.com/studio/) is required to run Android Emulator.
 
+1. In your terminal, clone this repo from Github to your local machine
+2. cd into the project folder and run: npm install
+3. Then run: npm start
+4. To run the app on iOS simulator, press "i". To run the app on Android emulator, turn on your emulator first and press "a" in your terminal.
+
 ## To run the Android version of this app as a user
 
 You can download the Android apk file [here](https://exp-shell-app-assets.s3-us-west-1.amazonaws.com/android%2F%40zhengcao18%2Fhike-seed-ec65e186-8c90-11e8-8cf6-0a580a780750-signed.apk). Choose install once asked. Location permission is required to display Map view.
